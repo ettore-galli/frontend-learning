@@ -1,0 +1,13 @@
+body {
+    background-color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: brown;
+}
+
+.spelling-error {
+    text-decoration: underline overline  #152906;
+    text-shadow: 10pt;
+}
