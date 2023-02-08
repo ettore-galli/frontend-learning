@@ -1,0 +1,57 @@
+:root {
+    --custom-color: brown;
+    --common-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: rgb(234, 233, 233);
+}
+
+header,
+main,
+footer,
+aside {
+    font-family: var(--common-font);
+    font-size: large;
+    color: var(--custom-color);
+    border: none;
+    background-color: rgb(251, 245, 238);
+    padding: 10px;
+    margin: 10px;
+}
+
+input,
+button,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    background-color: rgb(251, 245, 238);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color: var(--custom-color);
+}
+
+main section {
+    padding: 10px;
+}
+
+#book-id,
+#page-number {
+    font-weight: bolder;
+}
+
+#page-content {
+    font-style: italic;
+}
+
+.letter {
+    display: inline-block;
+    width: 1.2em;
+    height: 30px;
+    /* border: 1px solid rgb(239, 239, 208); */
+    text-align: center;
+}

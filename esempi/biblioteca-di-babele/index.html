@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>La Biblioteca di Babele</title>
+</head>
+
+<body>
+    <header>
+        <h1>La biblioteca di Babele</h1>
+    </header>
+
+    <main>
+        <section id="search">
+            <form id="search">
+                <input type="text" id="q" name="q" value="qweqweqwe">
+                <button type="submit" id="search">Cerca</button>
+            </form>
+        </section>
+
+        <section id="info">
+            Book: <span id="book-id"></span> Page: <span id="page-number"></span>
+        </section>
+
+        <section id="page-content">
+
+        </section>
+    </main>
+
+    <footer>
+        <small>Footer info</small>
+    </footer>
+
+</body>
+<script>
+    const logSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        console.log(Array.from(data.entries()).reduce((prv, cur) => ({ ...prv, [cur[0]]: cur[1] }), {}));
+    }
+    document.getElementById("search").addEventListener("submit", logSubmit)
+
+    const renderLetter = (letter) => `<span class="letter">${letter != " " ? letter : "&nbsp;"}</span>`;
+
+    const createRandomPageContent = (chars) => {
+        const alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ         ");
+
+        return arrayOfIndices(chars).reduce(
+            (acc, val, idx) => {
+                const newVal = (acc.seed * 1664525 + 1013904223) % 2 ** 32;
+
+                return { seed: newVal, content: acc.content + renderLetter(alphabet[newVal % alphabet.length]) }
+            },
+            { seed: 0, content: "" }
+        ).content;
+    }
+
+
+    const fillWithFakeData = (bookIdElement, pageNumberElement, pageContenteElement) => {
+        const pageNumber = 54;
+        bookIdElement.innerHTML = createRandomPageContent(21);
+        pageNumberElement.innerHTML = pageNumber;
+        const alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ ");
+
+        pageContenteElement.innerHTML = createRandomPageContent(40 * 80);
+
+    }
+
+    arrayOfIndices = (number) => Array.from(Array(number)).map((el, id) => id);
+
+    fillWithFakeData(
+        document.getElementById("book-id"),
+        document.getElementById("page-number"),
+        document.getElementById("page-content")
+    );
+
+</script>
+
+</html>
