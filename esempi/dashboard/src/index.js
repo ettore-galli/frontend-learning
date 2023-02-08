@@ -1,16 +1,12 @@
-//import i18nStrings from '../assets/i18n/it/strings.json';
 
+"use strict"
 
-const i18nStrings = {
-    "page-title": "Esempio di dashboard"
-};
+import { getJsonFile } from './request.js';
 
 const applyI18nStrings = (i18nClass, i18nStrings) => {
-    console.log("Apply i18n...")
     Array.from(document.getElementsByClassName(i18nClass)).forEach(
         e => {
             if (e.id) {
-                console.log(e.innerHTML, i18nStrings[e.id])
                 e.innerHTML = i18nStrings[e.id];
             }
         }
@@ -19,7 +15,21 @@ const applyI18nStrings = (i18nClass, i18nStrings) => {
 
 
 const startup = () => {
-    applyI18nStrings("i18n", i18nStrings);
+    const i18nClass = "i18n";
+
+    const i18nFile = 'public/assets/i18n/it/strings.json';
+
+    getJsonFile(i18nFile)
+        .then(i18nStrings => {
+            const runEnvironment = { i18nClass, i18nStrings };
+            main(runEnvironment);
+        })
+
+}
+
+const main = (runEnvironment) => {
+    const { i18nClass, i18nStrings } = runEnvironment;
+    applyI18nStrings(i18nClass, i18nStrings);
 }
 
 startup();
