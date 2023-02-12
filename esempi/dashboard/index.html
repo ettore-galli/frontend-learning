@@ -9,29 +9,80 @@
     <link rel="stylesheet" href="css/style.css">
 
     <title class="i18n" id="window-title"></title>
-    
+
 </head>
 
 <body>
-    <aside>
 
-    </aside>
+    <div class="page-container">
 
-    <header>
-        <h1 class="i18n" id="page-title"></h1>
-    </header>
+        <header>
+            <h1 class="i18n" id="page-title"></h1>
+        </header>
 
-    <main>
+        <div class="page-layout">
 
-    </main>
+            <aside>
+                <form id="data-input">
 
-    <footer>
+                    <h2 class="i18n" id="controls-main-subtitle"></h2>
 
-    </footer>
+                    <p class="i18n" id="controls-prologue"></p>
+
+                    <div class="control">
+                        <label class="i18n" id="label-value-alfa" for="value-alfa">.</label>
+                        <input id="value-alfa" name="value-alfa" type="range" min="0" max="100" step="5" value="" />
+                    </div>
+
+                    <div class="control">
+                        <label class="i18n" id="label-value-beta" for="value-beta">.</label>
+                        <input id="value-beta" name="value-beta" type="range" min="0" max="100" step="5" value="" />
+                    </div>
+
+                    <div class="control">
+                        <label class="i18n" id="label-value-gamma" for="value-gamma">.</label>
+                        <input id="value-gamma" name="value-gamma" type="range" min="0" max="100" step="5" value="" />
+                    </div>
+
+                    <div class="control">
+                        <label class="i18n" id="label-value-delta" for="value-delta">.</label>
+                        <input id="value-delta" name="value-delta" type="range" min="0" max="100" step="5" value="" />
+                    </div>
+
+                    <div class="control">
+                        <span class="label-filler"></span>
+                        <button class="i18n" type="submit" id="submit-button"></button>
+                    </div>
+
+                </form>
+            </aside>
+
+            <main>
+                <section id="values-logger">
+
+                </section>
+            </main>
+
+        </div>
+
+        <footer>
+            FOOTER
+        </footer>
+
+    </div>
 
     <script src="src/index.js" type="module">
 
     </script>
+
+    <template id="slider-input-template">
+        <div class="control">
+            <label class="i18n" id="#LABEL-ID" for="#INPUT-ID">.</label>
+            <input id="#INPUT-ID" name="#INPUT-ID" type="range" min="#INPUT-MIN" max="#INPUT-MAX" step="#INPUT-STEP"
+                value="" />
+        </div>
+    </template>
+
 </body>
 
 </html>

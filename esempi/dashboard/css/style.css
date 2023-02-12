@@ -1,10 +1,81 @@
+@font-face {
+    font-family: "PT Sans Narrow";
+    src: "fonts/PT_Sans_Narrow/PTSansNarrow-Bold.ttf",
+        "fonts/PT_Sans_Narrow/PTSansNarrow-Regular.ttf";
+}
+
 * {
 
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: "PT Sans Narrow", sans-serif;
 
     padding: 0;
     border: 0;
     margin: 0;
 
+
 }
 
+.page-layout {
+    display: flex;
+    flex-direction: row;
+}
+
+.page-container {
+    width: 950px;
+    margin: 0 auto;
+}
+
+aside {
+    background-color: rgb(236, 240, 242);
+    flex: 3;
+}
+
+header {
+    background-color: rgb(241, 248, 248);
+}
+
+main {
+    background-color: beige;
+    flex: 5;
+}
+
+footer {
+    background-color: blanchedalmond;
+}
+
+
+div .control {
+    display: flex;
+    flex-direction: row;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 10px;
+    margin: 3px;
+}
+
+label,
+input,
+button {
+    padding: 10px;
+    margin: 3px;
+    font-size: medium;
+}
+
+label,
+.label-filler {
+    flex: 3;
+}
+
+
+
+input,
+button {
+    flex: 11;
+}

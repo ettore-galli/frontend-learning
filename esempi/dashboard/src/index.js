@@ -2,6 +2,8 @@
 "use strict"
 
 import { getJsonFile } from './request.js';
+import { manageFormSubmit } from './form.js';
+import { registerStateChangeListener } from './app-state.js';
 
 const applyI18nStrings = (i18nClass, i18nStrings) => {
     Array.from(document.getElementsByClassName(i18nClass)).forEach(
@@ -27,9 +29,22 @@ const startup = () => {
 
 }
 
+const displayDashboardvalues = (e) => {
+    document.getElementById("values-logger").innerHTML = JSON.stringify(e);
+}
+
+const initEventListeners = () => {
+    document.getElementById("data-input").addEventListener("submit", manageFormSubmit);
+    registerStateChangeListener(displayDashboardvalues);
+}
+
+
+
 const main = (runEnvironment) => {
     const { i18nClass, i18nStrings } = runEnvironment;
+
     applyI18nStrings(i18nClass, i18nStrings);
+    initEventListeners();
 }
 
 startup();

@@ -1,4 +1,11 @@
 {
     "window-title": "Esempio di dashboard complessa",
-    "page-title": "Esempio di dashboard"
+    "page-title": "Esempio di dashboard",
+    "controls-main-subtitle": "Controlli vari",
+    "controls-prologue": "Usare questi controlli per selezionare dei valori più o meno a caso",
+    "label-value-alfa": "Alfa",
+    "label-value-beta": "Beta",
+    "label-value-gamma": "Gamma",
+    "label-value-delta": "Delta",
+    "submit-button": "Calcola"
 }
