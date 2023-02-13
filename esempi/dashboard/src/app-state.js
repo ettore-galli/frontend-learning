@@ -3,9 +3,18 @@ const APP_STATE_UPDATE_EVENT = "app-state-update";
 let centralAppState = {};
 const centralAppStateEventHub = new EventTarget();
 
+const triggerAppStateUpdateEvent = () => {
+    centralAppStateEventHub.dispatchEvent(new CustomEvent(APP_STATE_UPDATE_EVENT, { detail: centralAppState }));
+}
+
 const setState = (key, value) => {
     centralAppState = { ...centralAppState, [key]: value };
-    centralAppStateEventHub.dispatchEvent(new CustomEvent(APP_STATE_UPDATE_EVENT, { detail: centralAppState }));
+    triggerAppStateUpdateEvent();
+}
+
+const mergeWithState = (key, part) => {
+    centralAppState = { ...centralAppState, [key]: { ...centralAppState[key], ...part } };
+    triggerAppStateUpdateEvent();
 }
 
 const registerStateChangeListener = (listener) => {
@@ -13,4 +22,4 @@ const registerStateChangeListener = (listener) => {
 }
 
 
-export { setState, registerStateChangeListener };
+export { setState, mergeWithState, registerStateChangeListener };
