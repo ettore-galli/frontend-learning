@@ -5,6 +5,7 @@ import { getJsonFile } from './request.js';
 import { registerStateChangeListener } from './app-state.js';
 import { manageFormSubmit, setFieldValue } from './form.js';
 
+
 const applyI18nStrings = (i18nClass, i18nStrings) => {
     Array.from(document.getElementsByClassName(i18nClass)).forEach(
         e => {
@@ -29,16 +30,21 @@ const startup = () => {
 
 }
 
+
 const displayDashboardvalues = (e) => {
     document.getElementById("values-logger").innerHTML = JSON.stringify(e);
 }
 
+
 const initEventListeners = () => {
     document.getElementById("data-input").addEventListener("submit", manageFormSubmit);
-    document.getElementById("value-alfa").addEventListener("change", (e) => { setFieldValue("value-alfa", e.target.value) });
+
+    ["value-alfa", "value-beta", "value-gamma", "value-delta"].forEach(id => {
+        document.getElementById(id).addEventListener("change", (e) => { setFieldValue(id, e.target.value) });
+    });
+
     registerStateChangeListener(displayDashboardvalues);
 }
-
 
 
 const main = (runEnvironment) => {
@@ -47,6 +53,7 @@ const main = (runEnvironment) => {
     applyI18nStrings(i18nClass, i18nStrings);
     initEventListeners();
 }
+
 
 startup();
 
