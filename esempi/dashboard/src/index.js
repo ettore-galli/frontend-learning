@@ -2,7 +2,7 @@
 "use strict"
 
 import { getJsonFile } from './request.js';
-import { registerStateChangeListener } from './app-state.js';
+import { appState } from './app-state.js';
 import { manageFormSubmit, setFieldValue, sendInitialData } from './form.js';
 
 
@@ -51,7 +51,7 @@ const initEventListeners = () => {
         document.getElementById(id).addEventListener("change", (e) => { setFieldValue(id, e.target.value) });
     });
 
-    registerStateChangeListener(displayDashboardvalues);
+    appState.registerStateChangeListener(displayDashboardvalues);
 }
 
 

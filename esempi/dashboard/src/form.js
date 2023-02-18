@@ -1,4 +1,4 @@
-import { setState, mergeWithState } from './app-state.js';
+import { appState } from './app-state.js';
 
 const formToDict = (formData) => {
     return Array.from(formData.entries()).reduce((prv, cur) => ({ ...prv, [cur[0]]: cur[1] }), {});
@@ -11,7 +11,7 @@ const sendInitialData = () => {
 
 const sendFormData = (form) => {
     const data = new FormData(form);
-    setState("dashboard", formToDict(data));
+    appState.setState("dashboard", formToDict(data));
 }
 
 const manageFormSubmit = (event) => {
@@ -20,7 +20,7 @@ const manageFormSubmit = (event) => {
 }
 
 const setFieldValue = (field, value) => {
-    mergeWithState("dashboard", { [field]: value })
+    appState.mergeWithState("dashboard", { [field]: value })
 }
 
 export { manageFormSubmit, setFieldValue, sendInitialData }

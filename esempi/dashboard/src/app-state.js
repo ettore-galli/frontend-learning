@@ -31,8 +31,4 @@ class ApplicationState {
 
 const appState = new ApplicationState();
 
-const setState = (key, value) => { appState.setState(key, value); }
-const mergeWithState = (key, part) => { appState.mergeWithState(key, part); }
-const registerStateChangeListener = (listener) => { appState.registerStateChangeListener(listener); }
-
-export { setState, mergeWithState, registerStateChangeListener };
+export { appState };
