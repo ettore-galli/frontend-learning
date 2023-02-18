@@ -101,9 +101,8 @@ button {
     font-weight: :normal;
 
 }
+
 .value-bar-container {
-    border: 1px solid rgb(219, 131, 16);
-    background-color:lightcoral;
     display: grid;
     grid-template-columns: repeat(20, 5fr);
     grid-template-rows: 1fr;
@@ -111,6 +110,5 @@ button {
 
 .value-bar-element {
     height: 30px;
-    border: 1px solid rgb(50, 100, 170);
-    background-color: chartreuse;
+    background-color: chocolate;
 }
