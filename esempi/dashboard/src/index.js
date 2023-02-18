@@ -30,15 +30,39 @@ const startup = () => {
 
 }
 
+const createConstantArray = (numberOfElements, constantValue = 0) => {
+    return Array.from(Array(numberOfElements)).map(_ => constantValue);
+}
+
+const renderHorizontalBar = (valueBase100) => {
+
+    const barContainer = document.createElement("div");
+    barContainer.classList.add("value-bar-container");
+
+    const barElements = createConstantArray(Math.floor(valueBase100 / 5)).reduce((acc) => {
+        const baseElement = document.createElement("div");
+        baseElement.classList.add("value-bar-element");
+        baseElement.innerHTML="&nbsp;";
+        return [...acc, baseElement]
+    }, [])
+
+    barContainer.append(...barElements);
+
+    return barContainer;
+}
 
 const displayDashboardvalues = (e) => {
-    // document.getElementById("values-logger").innerHTML = JSON.stringify(e);
-
     const updateValuesNameRoots = ["alfa", "beta", "gamma", "delta"];
 
     updateValuesNameRoots.forEach(nameRoot => {
+
         const valueElementId = `dashboard-summary-${nameRoot}-value`;
-        document.getElementById(valueElementId).innerHTML = e.dashboard[`value-${nameRoot}`];
+        const barElementId = `dashboard-summary-${nameRoot}-bar`;
+
+        const value = e.dashboard[`value-${nameRoot}`];
+        
+        document.getElementById(valueElementId).innerHTML = value;
+        document.getElementById(barElementId).replaceChildren(renderHorizontalBar(value))
     });
 
 }

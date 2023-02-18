@@ -85,7 +85,8 @@ button {
 .dashboard-summary-container {
     background-color: antiquewhite;
     display: grid;
-    grid-template-columns: 2fr 5fr;
+    align-items: center;
+    grid-template-columns: 2fr 3fr 5fr;
     grid-auto-rows: 1fr;
 }
 
@@ -99,4 +100,17 @@ button {
     font-size: medium;
     font-weight: :normal;
 
+}
+.value-bar-container {
+    border: 1px solid rgb(219, 131, 16);
+    background-color:lightcoral;
+    display: grid;
+    grid-template-columns: repeat(20, 5fr);
+    grid-template-rows: 1fr;
+}
+
+.value-bar-element {
+    height: 30px;
+    border: 1px solid rgb(50, 100, 170);
+    background-color: chartreuse;
 }
