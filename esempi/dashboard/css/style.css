@@ -81,3 +81,22 @@ input,
 button {
     flex: 11;
 }
+
+.dashboard-summary-container {
+    background-color: antiquewhite;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-auto-rows: 1fr;
+}
+
+.dashboard-summary-caption {
+    font-size: medium;
+    font-weight: :bold;
+
+}
+
+.dashboard-summary-value {
+    font-size: medium;
+    font-weight: :normal;
+
+}

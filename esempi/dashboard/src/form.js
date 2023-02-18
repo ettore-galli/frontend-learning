@@ -4,13 +4,23 @@ const formToDict = (formData) => {
     return Array.from(formData.entries()).reduce((prv, cur) => ({ ...prv, [cur[0]]: cur[1] }), {});
 }
 
+
+const sendInitialData = () => {
+    sendFormData(document.getElementById("data-input"));
+}
+
+const sendFormData = (form) => {
+    const data = new FormData(form);
+    setState("dashboard", formToDict(data));
+}
+
 const manageFormSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    setState("dashboard", formToDict(data))
+    sendFormData(event.target);
 }
 
 const setFieldValue = (field, value) => {
     mergeWithState("dashboard", { [field]: value })
 }
-export { manageFormSubmit, setFieldValue }
+
+export { manageFormSubmit, setFieldValue, sendInitialData }

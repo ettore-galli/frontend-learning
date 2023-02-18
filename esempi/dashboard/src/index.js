@@ -3,14 +3,14 @@
 
 import { getJsonFile } from './request.js';
 import { registerStateChangeListener } from './app-state.js';
-import { manageFormSubmit, setFieldValue } from './form.js';
+import { manageFormSubmit, setFieldValue, sendInitialData } from './form.js';
 
 
 const applyI18nStrings = (i18nClass, i18nStrings) => {
     Array.from(document.getElementsByClassName(i18nClass)).forEach(
         e => {
             if (e.id) {
-                e.innerHTML = i18nStrings[e.id];
+                e.innerHTML = i18nStrings[e.id] || `<missing i18n for ${e.id}>`;
             }
         }
     )
@@ -32,7 +32,15 @@ const startup = () => {
 
 
 const displayDashboardvalues = (e) => {
-    document.getElementById("values-logger").innerHTML = JSON.stringify(e);
+    // document.getElementById("values-logger").innerHTML = JSON.stringify(e);
+
+    const updateValuesNameRoots = ["alfa", "beta", "gamma", "delta"];
+
+    updateValuesNameRoots.forEach(nameRoot => {
+        const valueElementId = `dashboard-summary-${nameRoot}-value`;
+        document.getElementById(valueElementId).innerHTML = e.dashboard[`value-${nameRoot}`];
+    });
+
 }
 
 
@@ -52,6 +60,7 @@ const main = (runEnvironment) => {
 
     applyI18nStrings(i18nClass, i18nStrings);
     initEventListeners();
+    sendInitialData();
 }
 
 
