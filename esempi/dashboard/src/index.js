@@ -42,7 +42,6 @@ const renderHorizontalBar = (valueBase100) => {
     const barElements = createConstantArray(Math.floor(valueBase100 / 5)).reduce((acc) => {
         const baseElement = document.createElement("div");
         baseElement.classList.add("value-bar-element");
-        baseElement.innerHTML="&nbsp;";
         return [...acc, baseElement]
     }, [])
 
