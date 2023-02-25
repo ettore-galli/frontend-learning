@@ -111,3 +111,32 @@ button {
     height: 30px;
     background-color: chocolate;
 }
+
+#plot-area {
+    height: 50vh;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.plot-element {
+    position: absolute;
+    border: 1px solid gold;
+    opacity: 0.5;
+}
+
+.plot-element-alfa {
+    background-color: forestgreen;
+}
+
+.plot-element-beta {
+    background-color: cadetblue;
+}
+
+.plot-element-gamma {
+    background-color: darkseagreen;
+}
+
+.plot-element-delta {
+    background-color: olive;
+}

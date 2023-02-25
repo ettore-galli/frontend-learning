@@ -34,14 +34,22 @@ const createConstantArray = (numberOfElements, constantValue = 0) => {
     return Array.from(Array(numberOfElements)).map(_ => constantValue);
 }
 
+
+const createDiv = (classes) => {
+    const divElement = document.createElement("div");
+    classes.forEach(classEntry => {
+        divElement.classList.add(classEntry);
+    });
+    return divElement;
+}
+
 const renderHorizontalBar = (valueBase100) => {
 
     const barContainer = document.createElement("div");
     barContainer.classList.add("value-bar-container");
 
     const barElements = createConstantArray(Math.floor(valueBase100 / 5)).reduce((acc) => {
-        const baseElement = document.createElement("div");
-        baseElement.classList.add("value-bar-element");
+        const baseElement = createDiv(["value-bar-element"])
         return [...acc, baseElement]
     }, [])
 
@@ -50,7 +58,7 @@ const renderHorizontalBar = (valueBase100) => {
     return barContainer;
 }
 
-const displayDashboardvalues = (e) => {
+const displayDashboardValues = (e) => {
     const updateValuesNameRoots = ["alfa", "beta", "gamma", "delta"];
 
     updateValuesNameRoots.forEach(nameRoot => {
@@ -59,13 +67,38 @@ const displayDashboardvalues = (e) => {
         const barElementId = `dashboard-summary-${nameRoot}-bar`;
 
         const value = e.dashboard[`value-${nameRoot}`];
-        
+
         document.getElementById(valueElementId).innerHTML = value;
         document.getElementById(barElementId).replaceChildren(renderHorizontalBar(value))
     });
 
 }
 
+
+const plotDashboardValues = (e) => {
+    const plotArea = document.getElementById("plot-area");
+
+    const nameRoots = ["alfa", "beta", "gamma", "delta"];
+
+    const elements = nameRoots.map(root => {
+        const value = e.dashboard[`value-${root}`];
+        const elementClass = `plot-element-${root}`;
+        const plotElement = createDiv(["plot-element", elementClass]);
+
+        plotElement.style.width = String(0.9 * Number(value)) + "%";
+        plotElement.style.height = String(0.9 * Number(value)) + "%";
+        plotElement.style.left = String(0.1 * Number(value)) + "%";
+        plotElement.style.top = String(0.1 * Number(value)) + "%";
+        plotElement.style.borderRadius = "50%";
+
+        return plotElement;
+    });
+
+    console.log(elements)
+    plotArea.replaceChildren(...elements);
+
+
+}
 
 const initEventListeners = () => {
     document.getElementById("data-input").addEventListener("submit", manageFormSubmit);
@@ -74,7 +107,8 @@ const initEventListeners = () => {
         document.getElementById(id).addEventListener("change", (e) => { setFieldValue(id, e.target.value) });
     });
 
-    appState.registerStateChangeListener(displayDashboardvalues);
+    appState.registerStateChangeListener(displayDashboardValues);
+    appState.registerStateChangeListener(plotDashboardValues);
 }
 
 
