@@ -75,6 +75,7 @@ const displayDashboardValues = (e) => {
 }
 
 
+
 const plotDashboardValues = (e) => {
     const plotArea = document.getElementById("plot-area");
 
@@ -85,6 +86,8 @@ const plotDashboardValues = (e) => {
         const elementClass = `plot-element-${root}`;
         const plotElement = createDiv(["plot-element", elementClass]);
 
+        
+        
         plotElement.style.width = String(0.9 * Number(value)) + "%";
         plotElement.style.height = String(0.9 * Number(value)) + "%";
         plotElement.style.left = String(0.1 * Number(value)) + "%";
