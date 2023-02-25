@@ -1,17 +1,13 @@
 # HTML
 
-## Pagina
-- meta
-- link
-- script
-    - defer
+## Corso linkedin
+https://www.linkedin.com/learning/html-essential-training-4?contextUrn=urn%3Ali%3AlyndaLearningPath%3A56d7a7053dd559b764b88a92
 
-## Html
-- p, h, em, strong, ol, ul, li
+## Reference
+https://developer.mozilla.org/en-US/docs/Web/HTML
 
-## Lezioni imparate
+## Lettura reference tag
 
-### Semantico
-Si dovrebbero usare i tag html per il loro significato
-- Chiarezza
-- Accessibilità
+### <a>
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+https://developer.mozilla.org/en-US/docs/Web/Text_fragments
