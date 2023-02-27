@@ -81,17 +81,17 @@ const plotDashboardValues = (e) => {
 
     const nameRoots = ["alfa", "beta", "gamma", "delta"];
 
-    const elements = nameRoots.map(root => {
+    const elements = nameRoots.map((root, index) => {
         const value = e.dashboard[`value-${root}`];
         const elementClass = `plot-element-${root}`;
         const plotElement = createDiv(["plot-element", elementClass]);
 
-        
-        
-        plotElement.style.width = String(0.9 * Number(value)) + "%";
-        plotElement.style.height = String(0.9 * Number(value)) + "%";
-        plotElement.style.left = String(0.1 * Number(value)) + "%";
-        plotElement.style.top = String(0.1 * Number(value)) + "%";
+
+
+        plotElement.style.width = String(0.6 * ((index + 1) / elements.length) * Number(value)) + "%";
+        plotElement.style.height = String(0.6 * ((index + 1) / elements.length) * Number(value)) + "%";
+        plotElement.style.left = String(0.1 * (index + 1) * Number(value)) + "%";
+        plotElement.style.top = String(0.1 * (index + 1) * Number(value)) + "%";
         plotElement.style.borderRadius = "50%";
 
         return plotElement;

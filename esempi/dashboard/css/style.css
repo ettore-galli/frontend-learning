@@ -126,17 +126,17 @@ button {
 }
 
 .plot-element-alfa {
-    background-color: forestgreen;
+    background-color: cyan;
 }
 
 .plot-element-beta {
-    background-color: cadetblue;
+    background-color: magenta;
 }
 
 .plot-element-gamma {
-    background-color: darkseagreen;
+    background-color: yellow;
 }
 
 .plot-element-delta {
-    background-color: olive;
+    background-color: black;
 }
