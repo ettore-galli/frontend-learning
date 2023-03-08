@@ -4,15 +4,26 @@
         "fonts/PT_Sans_Narrow/PTSansNarrow-Regular.ttf";
 }
 
+:root {
+
+    --general-background-color: #d6d01f;
+    --header-background-color: #f0dbe9;
+    --control-background-color: #dbddf0;
+    --display-background-color: #e2cbcb;
+    --graphics-background-color: #a3e322;
+}
+
 * {
-
     font-family: "PT Sans Narrow", sans-serif;
-
     padding: 0;
     border: 0;
     margin: 0;
 
+}
 
+html {
+    font-size: medium;
+    background-color: var(--general-background-color);
 }
 
 .page-layout {
@@ -20,25 +31,32 @@
     flex-direction: row;
 }
 
+@media (max-width: 600px) {
+    .page-layout {
+        flex-direction: column;
+        border: 1px solid salmon;
+    }
+}
+
 .page-container {
     max-width: 950px;
-    width: 85%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
 
+header {
+    background-color: var(--header-background-color);
+}
+
 aside {
-    background-color: rgb(236, 240, 242);
+    background-color: var(--control-background-color);
     flex: 3;
 }
 
-header {
-    background-color: rgb(241, 248, 248);
-}
 
 main {
-    background-color: beige;
+    background-color: var(--display-background-color);
     flex: 5;
 }
 
@@ -63,12 +81,34 @@ h6 {
     margin: 3px;
 }
 
+p {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 1.77rem;
+}
+
+h2 {
+    font-size: 1.61rem;
+}
+h3 {
+    font-size: 1.46rem;
+}
+h4 {
+    font-size: 1.33rem;
+}
+h5 {
+    font-size: 1.21rem;
+}
+h6 {
+    font-size: 1.1rem;
+}
 label,
 input,
 button {
     padding: 10px;
     margin: 3px;
-    font-size: medium;
 }
 
 label,
@@ -77,10 +117,10 @@ label,
 }
 
 
-
 input,
 button {
     flex: 11;
+    font-size: 1rem;
 }
 
 .dashboard-summary-container {
@@ -92,12 +132,10 @@ button {
 }
 
 .dashboard-summary-caption {
-    font-size: medium;
     font-weight: :bold;
 }
 
 .dashboard-summary-value {
-    font-size: medium;
     font-weight: :normal;
 }
 

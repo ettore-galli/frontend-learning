@@ -15,12 +15,35 @@ Collegamento alla pagina
 Path relativi ed assoluti 
 Ottimizzazione immagini per diplay Retina
 
-## Unità di misura
+## Argomenti
+https://medium.com/sfl-newsroom/css-learning-roadmap-2b17346d2316
+
+### * Unità di misura
 Unità di misura numeriche
 Lunghezza: unità assolute e relative
 
-## Selettori
+### * Selettori
 Selettore universale *
-
 Specificità
+
+### Viewport + size
+https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units
+
+### * @ rules
+
+
+### * Responsiveness
+Meta tag:
+https://css-tricks.com/snippets/html/responsive-meta-tag/
+
+### * Layout / flex
+
+
+### * Layout / Grid
+
+
+
+
+
 
