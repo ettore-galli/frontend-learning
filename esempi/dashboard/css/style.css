@@ -6,11 +6,22 @@
 
 :root {
 
-    --general-background-color: #d6d01f;
-    --header-background-color: #f0dbe9;
-    --control-background-color: #dbddf0;
-    --display-background-color: #e2cbcb;
-    --graphics-background-color: #a3e322;
+    --general-background-color: #d3d3d3ff;
+    --header-background-color: #f2f4f0ff;
+    --control-background-color: #fffeffff;
+    --display-background-color: #bfe1f0ff;
+    --graphics-background-color: #f0ece5ff;
+    --footer-background-color: var(--header-background-color);
+
+    --graph-fill-alfa: #a5a5a5ff;
+    --graph-fill-beta: #bdc7b3ff;
+    --graph-fill-gamma: #74bedeff;
+    --graph-fill-delta: #cabca4ff;
+
+    --graph-border-alfa: #535353ff;
+    --graph-border-beta: #5e6d50ff;
+    --graph-border-gamma: #206988ff;
+    --graph-border-delta: #746244ff;
 }
 
 * {
@@ -34,7 +45,6 @@ html {
 @media (max-width: 600px) {
     .page-layout {
         flex-direction: column;
-        border: 1px solid salmon;
     }
 }
 
@@ -61,7 +71,7 @@ main {
 }
 
 footer {
-    background-color: blanchedalmond;
+    background-color: var(--footer-background-color);
 }
 
 
@@ -92,18 +102,23 @@ h1 {
 h2 {
     font-size: 1.61rem;
 }
+
 h3 {
     font-size: 1.46rem;
 }
+
 h4 {
     font-size: 1.33rem;
 }
+
 h5 {
     font-size: 1.21rem;
 }
+
 h6 {
     font-size: 1.1rem;
 }
+
 label,
 input,
 button {
@@ -124,7 +139,7 @@ button {
 }
 
 .dashboard-summary-container {
-    background-color: antiquewhite;
+    background-color: var(--display-background-color);
     display: grid;
     align-items: center;
     grid-template-columns: 2fr 3fr 5fr;
@@ -147,7 +162,22 @@ button {
 
 .value-bar-element {
     height: 30px;
-    background-color: chocolate;
+}
+
+.value-bar-element-alfa {
+    background-color: var(--graph-fill-alfa);
+}
+
+.value-bar-element-beta {
+    background-color: var(--graph-fill-beta);
+}
+
+.value-bar-element-gamma {
+    background-color: var(--graph-fill-gamma);
+}
+
+.value-bar-element-delta {
+    background-color: var(--graph-fill-delta);
 }
 
 #plot-area {
@@ -159,22 +189,26 @@ button {
 
 .plot-element {
     position: absolute;
-    border: 1px solid gold;
+    border: 1px solid;
     opacity: 0.5;
 }
 
 .plot-element-alfa {
-    background-color: cyan;
+    background-color: var(--graph-fill-alfa);
+    border-color: var(--graph-border-alfa);
 }
 
 .plot-element-beta {
-    background-color: magenta;
+    background-color: var(--graph-fill-beta);
+    border-color: var(--graph-border-beta);
 }
 
 .plot-element-gamma {
-    background-color: yellow;
+    background-color: var(--graph-fill-gamma);
+    border-color: var(--graph-border-gamma);
 }
 
 .plot-element-delta {
-    background-color: black;
+    background-color: var(--graph-fill-delta);
+    border-color: var(--graph-border-delta);
 }

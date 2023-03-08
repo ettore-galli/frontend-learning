@@ -43,13 +43,13 @@ const createDiv = (classes) => {
     return divElement;
 }
 
-const renderHorizontalBar = (valueBase100) => {
+const renderHorizontalBar = (nameRoot, valueBase100) => {
 
     const barContainer = document.createElement("div");
     barContainer.classList.add("value-bar-container");
 
     const barElements = createConstantArray(Math.floor(valueBase100 / 5)).reduce((acc) => {
-        const baseElement = createDiv(["value-bar-element"])
+        const baseElement = createDiv(["value-bar-element", `value-bar-element-${nameRoot}`])
         return [...acc, baseElement]
     }, [])
 
@@ -69,7 +69,7 @@ const displayDashboardValues = (e) => {
         const value = e.dashboard[`value-${nameRoot}`];
 
         document.getElementById(valueElementId).innerHTML = value;
-        document.getElementById(barElementId).replaceChildren(renderHorizontalBar(value))
+        document.getElementById(barElementId).replaceChildren(renderHorizontalBar(nameRoot, value))
     });
 
 }
