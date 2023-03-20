@@ -9,6 +9,10 @@ https://developer.mozilla.org/en-US/docs/Web/CSS
 Animazioni
 https://www.w3schools.com/css/css3_animations.asp
 
+Colori
+https://m3.material.io/styles/color/overview
+https://m3.material.io/theme-builder#/custom
+
 ## Generalità
 Scopo del CSS
 Collegamento alla pagina

@@ -1,3 +1,7 @@
+@import url(./tema-1/tokens.css);
+@import url(./tema-1/theme.light.css);
+
+
 @font-face {
     font-family: "PT Sans Narrow";
     src: "fonts/PT_Sans_Narrow/PTSansNarrow-Bold.ttf",
@@ -6,11 +10,11 @@
 
 :root {
 
-    --general-background-color: #d3d3d3ff;
-    --header-background-color: #f2f4f0ff;
-    --control-background-color: #fffeffff;
-    --display-background-color: #bfe1f0ff;
-    --graphics-background-color: #f0ece5ff;
+    --general-background-color: var(--md-sys-color-background);
+    --header-background-color: var(--md-sys-color-primary-container);
+    --control-background-color: var(--md-sys-color-secondary-container);
+    --display-background-color: var(--md-sys-color-tertiary-container);
+    --graphics-background-color: var(--md-sys-color-primary-container);
     --footer-background-color: var(--header-background-color);
 
     --graph-fill-alfa: #a5a5a5ff;
@@ -136,6 +140,14 @@ input,
 button {
     flex: 11;
     font-size: 1rem;
+}
+
+button:hover {
+    background-color: var(--display-background-color);
+}
+
+button:active {
+    background-color: var(--display-background-color);
 }
 
 .dashboard-summary-container {
