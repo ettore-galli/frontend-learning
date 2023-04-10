@@ -18,6 +18,7 @@ function fetch() {
  * @return {Promise<number>} Newly created reservation ID.
  */
 function create(reservation) {
+  // return module.exports.validate(reservation)
   return validate(reservation)
     .then(save)
     .then(result => result[0])
@@ -41,6 +42,7 @@ function save(reservation) {
  * @return {Promise<Reservation>} Validated reservation.
  */
 function validate(reservation) {
+  console.log("*** RESERVATION_S_/VALIDATE HAS BEEN CALLED!!!")
   debug(`Validating ${JSON.stringify(reservation)}`);
   return new Promise((resolve, reject) => {
     reservation.validate((error, value) => {

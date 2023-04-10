@@ -1,10 +1,17 @@
 const { after } = require('lodash');
-//const reservations = require('./reservations');
 const Reservation = require('./schema/reservation');
 
 
 
-describe.skip("validate", () => {
+describe("validate", () => {
+    let reservations;
+
+
+    beforeAll(() => {
+        reservations = require('./reservations');
+
+    });
+
     it("optionals-empty-ok", () => {
 
         const reservation = new Reservation({
@@ -42,6 +49,16 @@ describe.skip("validate", () => {
 
     });
 
+    it("reject-empty", async () => {
+        const mock = jest.spyOn(reservations, "validate");
+
+        const value = undefined;
+
+        await expect(reservations.validate(value))
+            .rejects.toThrow("Cannot read properties of undefined (reading 'validate')");
+
+        expect(mock).toBeCalledWith(value);
+    })
 
 });
 
@@ -116,25 +133,61 @@ describe("validate-asyncawait-version", () => {
 });
 
 
-// describe("create", () => {
-//     it("validation-fails-mocked", async () => {
-//         const original = reservations.validate;
+describe("create", () => {
 
-//         const error = new Error("fail");
+    it("validation-fails-mocked", async () => {
 
-//         reservations.validate = jest.fn(() => Promise.reject(error));
+        let reservations;
 
-//         //jest.mock(reservations)
+        const expectedError = new Error("fail");
 
-//         await expect(reservations.create())
-//             .rejects.toBe(error);
+        reservations = require('./reservations');
+
+        const mockValidation = jest.spyOn(reservations, "validate")
+        mockValidation.mockImplementation(_ => Promise.reject(expectedError));
+
+        await expect(reservations.create({}))
+            .rejects.toBe(expectedError);
+
+        expect(reservations.validate).toBeCalledTimes(1);
+
+    });
+
+    it("validation-fails-mocked-2", async () => {
+
+        let reservations;
+
+        const expectedError = new Error("fail");
+
+        reservations = require('./reservations');
+        
+        const mockRes= jest.spyOn(reservations, 'validate');
+        mockRes.mockImplementation(__ => Promise.reject(expectedError));
+        
+        // jest.mock('./reservations', () => {
+        //     const expectedError = new Error("fail");
+        //     return {
+        //         __esModule: true,
+        //         ...jest.requireActual('./reservations'),
+        //         validate: _ => Promise.reject(expectedError)
+        //     }
+        // })
+        // jest.mock('./reservations');
+
+        // reservations = require('./reservations');
+
+        await expect(reservations.validate({}))
+            .rejects.toEqual(expectedError);
+
+        await expect(reservations.create({}))
+            .rejects.toBe(expectedError);
+
+        // expect(reservations.validate).toBeCalledTimes(1);
+
+    });
 
 
-//         expect(reservations.validate).toBeCalledTimes(1);
-
-//         reservations.validate = original;
-//     })
-// })
+})
 
 
 
