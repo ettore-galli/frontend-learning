@@ -1,4 +1,4 @@
-describe("average", () => {
+describe("test-average-1", () => {
     let statistics;
 
     beforeAll(() => {
@@ -6,13 +6,30 @@ describe("average", () => {
         jest.spyOn(statistics, "total").mockImplementation(_ => 150);
     });
 
-    it("does-average", () => {
+    it("does-average-1", () => {
         expect(statistics.average([1, 2, 3])).toBe(50);
     });
 
 });
+describe("explore", () => {
+    let statistics;
 
-describe("average-alternative", () => {
+    beforeAll(() => {
+        statistics = require('./statistics');
+        jest.spyOn(statistics, "total").mockImplementation(_ => 150);
+    });
+
+    it("does-average-x", () => {
+        //expect(statistics.average([1, 2, 3])).toBe(50);
+        console.log(statistics.module)
+        const  { total, average, futureAverage } = require('./statistics');
+        console.log(total)
+        console.log(average)
+    });
+
+});
+
+describe("average-b", () => {
     let statistics;
     let original;
 
@@ -26,12 +43,41 @@ describe("average-alternative", () => {
         statistics.total = original;
     })
 
-    it("alternative-average", () => {
+    it("b-average", () => {
         expect(statistics.average([1, 2])).toBe(75);
     });
 
 });
 
+
+describe("test-average-2", () => {
+    let statistics;
+    let original;
+
+    beforeAll(() => {
+        jest.mock('./statistics', () =>  {
+            const actual = jest.requireActual('./statistics');
+            return {
+                ...actual,
+                total: jest.fn().mockReturnValue(150)
+            }
+        })
+        console.log("statistics ==> ", statistics)
+        statistics = require('./statistics');
+        console.log("statistics ==> ", statistics)
+
+    });
+
+    afterAll(() => {
+        jest.unmock("./statistics")
+    })
+
+    it("does-average-2", () => {
+        expect(statistics.total([1, 2])).toBe(150);
+        expect(statistics.average([1, 2])).toBe(75);
+    });
+
+});
 
 describe("future", () => {
     let statistics;

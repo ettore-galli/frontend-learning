@@ -5,7 +5,8 @@ function total(samples) {
 }
 
 function average(samples) {
-    return module.exports.total(samples) / samples.length
+    return total(samples) / samples.length
+    // return module.exports.total(samples) / samples.length
 }
 
 function futureAverage(samples) {
