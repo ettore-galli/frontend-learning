@@ -1,5 +1,8 @@
 import { error } from 'console';
-import { supersomma, totalizer } from '../../lib/math';
+import { supersomma, totalizer, willSum } from '../../lib/math';
+
+
+// Semplice test
 
 describe("Test somma", () => {
     it("Esegue la somma", () => {
@@ -11,6 +14,8 @@ describe("Test somma", () => {
 })
 
 
+// Callback
+
 describe("Test totalizer", () => {
     it("Richiama la somma", (done) => {
         totalizer([1, 2], (samples: number[]) => {
@@ -21,5 +26,20 @@ describe("Test totalizer", () => {
                 return done(error)
             }
         })
+    })
+})
+
+// Promise
+describe("Test will sum", () => {
+    it("Richiama la somma con promise", async () => {
+        await expect(willSum([1, 2])).resolves.toEqual(3);
+    })
+})
+
+// Async/Await
+describe("Test will sum", () => {
+    it("Richiama la somma async", async () => {
+        const result = await willSum([1, 2]);
+        expect(result).toEqual(3);
     })
 })
