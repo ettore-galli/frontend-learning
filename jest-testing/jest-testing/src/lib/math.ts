@@ -21,6 +21,12 @@ function willSum(samples: number[]) {
     });
 }
 
+function willSumViaCallback(samples: number[], sumFunction: (samples: number[]) => number) {
+    return new Promise((resolve) => {
+        resolve(sumFunction(samples));
+    });
+}
+
 
 
 function average(samples: number[]) {
@@ -40,6 +46,7 @@ export {
     futureAverage,
     willSum,
     totalizer,
+    willSumViaCallback
 };
 
 

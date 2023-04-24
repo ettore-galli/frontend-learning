@@ -1,5 +1,5 @@
-import { error } from 'console';
-import { supersomma, totalizer, willSum } from '../../lib/math';
+import { assert, error } from 'console';
+import { supersomma, totalizer, willSum, willSumViaCallback } from '../../lib/math';
 
 
 // Semplice test
@@ -43,3 +43,19 @@ describe("Test will sum", () => {
         expect(result).toEqual(3);
     })
 })
+
+// Promise + callback
+describe("Test will sum con callback", () => {
+    it("La callback è richiamata correttamente", (done) => {
+        willSumViaCallback([1, 2], (items: number[]) => {
+            try {
+                expect(items).toEqual([1, 2]);
+                return done()
+            } catch (err) {
+                return done(err);
+            }
+        });
+    })
+});
+
+
