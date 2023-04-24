@@ -1,6 +1,22 @@
-import { assert, error } from 'console';
-import { supersomma, totalizer, willSum, willSumViaCallback } from '../../lib/math';
 
+import {
+    supersomma,
+    totalizer,
+    willSum,
+    willSumViaCallback,
+    totalOrderQty
+} from '../../lib/math';
+
+import { Order, OrderItem } from '../../lib/data';
+
+const mockOrder: Order = new Order(123, [new OrderItem("pere", 7), new OrderItem("banane", 4)]);
+
+jest.mock('../../lib/data', () => {
+    return {
+        ...jest.requireActual('../../lib/data'),
+        fetchOrder: (orderNumber: number) => mockOrder
+    }
+});
 
 // Semplice test
 
@@ -23,7 +39,7 @@ describe("Test totalizer", () => {
                 expect(samples).toEqual([1, 2])
                 return done();
             } catch (err) {
-                return done(error)
+                return done(err)
             }
         })
     })
@@ -59,3 +75,19 @@ describe("Test will sum con callback", () => {
 });
 
 
+// Mock 1 - Mock funzione - semplice sostitutivo
+describe("Test totalizer mock", () => {
+    it("La callback è richiamata correttamente", () => {
+        const mockCallback = jest.fn()
+        willSumViaCallback([1, 2], mockCallback);
+        expect(mockCallback.mock.calls).toHaveLength(1);
+        expect(mockCallback.mock.calls).toEqual([[[1, 2]]]);
+    })
+});
+
+// Mock 2 - Mock modulo data
+describe("Test totalOrderQty", () => {
+    it("Esegue la somma delle quantità", () => {
+        expect(totalOrderQty(1)).toEqual(11);
+    })
+});

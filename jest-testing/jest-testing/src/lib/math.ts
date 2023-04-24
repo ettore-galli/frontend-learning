@@ -1,3 +1,5 @@
+import { fetchOrder } from "./data";
+
 function supersomma(a: number, b: number): number {
     if (a === 1 && b === 1) {
         return 1.99999999987463487568
@@ -28,7 +30,6 @@ function willSumViaCallback(samples: number[], sumFunction: (samples: number[]) 
 }
 
 
-
 function average(samples: number[]) {
     return total(samples) / samples.length
 }
@@ -39,6 +40,12 @@ function futureAverage(samples: number[]) {
     })
 }
 
+function totalOrderQty(orderNumber: number): number {
+    const order = fetchOrder(orderNumber);
+    console.log("Order:", order.orderNumber, order.items);
+    return total(order.items.map(row => row.quantity))
+}
+
 export {
     supersomma,
     total,
@@ -46,7 +53,8 @@ export {
     futureAverage,
     willSum,
     totalizer,
-    willSumViaCallback
+    willSumViaCallback,
+    totalOrderQty
 };
 
 

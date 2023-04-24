@@ -14,8 +14,19 @@
 }
 
 .App-header {
+  background-color: #313b4d;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-body {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +43,22 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 25vw);
+  grid-template-rows: repeat(4, 40vh);
+}
+
+.testCaseContainer {
+  width: 90%;
+  height: 90%;
+  padding: 2%;
+  margin: 2%;
+  border: 5px solid #627596;
 }

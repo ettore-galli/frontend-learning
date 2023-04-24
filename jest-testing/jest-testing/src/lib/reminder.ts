@@ -6,3 +6,5 @@ function remindMe(what: string, delay: number, action: (message: string) => void
 
     setTimeout(() => { action(remindMessage) }, delay);
 }
+
+export { remindMe };
