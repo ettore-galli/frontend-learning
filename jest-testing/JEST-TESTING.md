@@ -35,7 +35,7 @@ npm test -- jest-testing/jest-testing/src/__tests__/lib/math.test.tsx
 ### Semplice test di funzione
 
 ```typescript
-// math.tsx
+// definizione
 function supersomma(a: number, b: number): number {
     if (a === 1 && b === 1) {
         return 1.99999999987463487568
@@ -47,7 +47,7 @@ function supersomma(a: number, b: number): number {
 
 export { supersomma }
 
-// math.test.tsx
+// test
 import { supersomma } from '../../lib/math';
 
 describe("Test somma", () => {
@@ -64,10 +64,14 @@ describe("Test somma", () => {
 
 ### Test di codice asincrono - callback
 
+<https://jestjs.io/docs/asynchronous>
+
 - La funzione callback riceve done
 - Occorre richiamare done per indicare la fine del test
 
 ```typescript
+
+// definizione
 
 function total(samples: number[]) {
     return samples.reduce((acc, cur) => acc + cur, 0);
@@ -76,6 +80,8 @@ function total(samples: number[]) {
 function totalizer(samples: number[], sumFunction: (samples: number[]) => number) {
     setTimeout(() => console.log(sumFunction(samples)), 0);
 };
+
+// test 
 
 describe("Test totalizer", () => {
     it("Richiama la somma", (done) => {
@@ -110,6 +116,73 @@ describe("Test totalizer", () => {
 ```
 
 ## Tecniche di mock
+
+### Funzione mock (sostitutivo)
+
+<https://jestjs.io/docs/mock-functions#using-a-mock-function>
+
+```typescript
+
+jest.fn()
+jest.fn((...)=>...) // Con implementazione
+
+// definizione
+
+function willSumViaCallback(samples: number[], sumFunction: (samples: number[]) => number) {
+    return new Promise((resolve) => {
+        resolve(sumFunction(samples));
+    });
+}
+
+// test
+
+describe("Test totaliser mock", () => {
+    it("La callback è richiamata correttamente", () => {
+        const mockCallback = jest.fn()
+        willSumViaCallback([1, 2], mockCallback);
+        expect(mockCallback.mock.calls).toHaveLength(1);
+        expect(mockCallback.mock.calls).toEqual([[[1, 2]]]);
+    })
+});
+
+```
+
+### Mock di un modulo
+
+```typescript
+
+// definizione: data.ts
+function fetchOrder(orderNumber: number): Order {
+    console.log("Called *actual* fetchOrder")
+    return DATABASE.filter(order => order.orderNumber === orderNumber)[0];
+}
+ 
+// definizione: modulo utente di data.ts
+function totalOrderQty(orderNumber: number): number {
+    const order = fetchOrder(orderNumber);
+    console.log("Order:", order.orderNumber, order.items);
+    return total(order.items.map(row => row.quantity))
+}
+
+// test
+const mockOrder: Order = new Order(123, [new OrderItem("pere", 7), new OrderItem("banane", 4)]);
+
+jest.mock('../../lib/data', () => {
+    return {
+        ...jest.requireActual('../../lib/data'),
+        fetchOrder: (orderNumber: number) => mockOrder
+    }
+});
+
+// ...
+
+describe("Test totalOrderQty", () => {
+    it("Esegue la somma delle quantità", () => {
+        expect(totalOrderQty(1)).toEqual(11);
+    })
+});
+
+```
 
 ## Libreria di test react
 
