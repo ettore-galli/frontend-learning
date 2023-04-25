@@ -188,10 +188,32 @@ describe("Test totalOrderQty", () => {
 
 ### Test di componenti front end
 
-- Rendering
-- Selector
+<https://jestjs.io/docs/tutorial-react>
+
+- Rendering di un componente o porzione di pagina
+
+```const rendered = render(<Selector title="Di Prova"></Selector>);```typescript
+
+- Selector: Selezionare una porzione
+
+```const mySelect = rendered.getByRole('combobox');```typescript
+
+Esistono diversi selettori, per il ROle usare gli Aria Roles:
+
+<https://www.w3.org/TR/html-aria/#docconformance>s
+
 - Trigger di eventi
+
+```fireEvent.change(mySelect, { target: { value: 'B' } });```typescript
+
 - Asserzioni
+
+```expect(mySelect).toHaveValue("B");```typescript
+
+Reference sui tipi di asserzioni (jest-dom testing library)
+<https://github.com/testing-library/jest-dom>
+
+### Esempio
 
 ## Altre note tecniche
 

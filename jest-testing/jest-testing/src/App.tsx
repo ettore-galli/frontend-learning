@@ -1,5 +1,6 @@
 
 import './App.css';
+import { Selector } from './components/selector/selector';
 
 function App() {
   return (
@@ -9,7 +10,9 @@ function App() {
       </header>
       <body className="App-body">
         <div className='grid-container'>
-          <div className="testCaseContainer">&nbsp;</div>
+          <div className="testCaseContainer">
+            <Selector title={"Selettore"}></Selector>
+          </div>
           <div className="testCaseContainer">&nbsp;</div>
           <div className="testCaseContainer">&nbsp;</div>
           <div className="testCaseContainer">&nbsp;</div>
