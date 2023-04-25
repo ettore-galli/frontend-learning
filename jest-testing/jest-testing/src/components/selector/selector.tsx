@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 class SelectorProps {
     title: string | null = null;

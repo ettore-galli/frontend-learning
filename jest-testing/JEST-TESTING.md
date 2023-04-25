@@ -184,6 +184,75 @@ describe("Test totalOrderQty", () => {
 
 ```
 
+### Mock di timer
+
+<https://jestjs.io/docs/timer-mocks#run-all-timers>
+
+```typescript
+
+// definizione
+
+import { useState } from "react";
+
+class SelectorProps {
+    title: string | null = null;
+}
+
+const Selector = (props: SelectorProps) => {
+
+    const [selected, setSelected] = useState("");
+    const options: Array<number | string> = ["", "A", "B", "C"]
+    return <>
+        <div>{props.title}</div>
+        <div>{selected ? selected : "..."}</div>
+        <select onChange={(e) => setSelected(e.target.value)}>
+            {options.map(opt => <option key={opt} value={opt} >Opzione {opt}</option>)}
+        </select>
+    </>
+}
+
+
+export { Selector };
+
+// test
+
+import { remindMe } from '../../lib/reminder';
+
+describe("Test reminder", () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+    })
+
+    afterEach(() => {
+        jest.useRealTimers();
+    })
+
+    it("Esempio di mock di Timeout", () => {
+
+        jest.spyOn(global, 'setTimeout');
+
+        remindMe("test", 1234, jest.fn());
+ 
+        expect(setTimeout).toHaveBeenCalledTimes(1);
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1234);
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.anything(), 1234);
+
+    })
+
+    it("Esempio di simulazione di delay", () => {
+        const callback = jest.fn();
+        remindMe("test", 0, callback);
+        expect(callback).not.toBeCalled();
+        jest.runAllTimers();
+        expect(callback).toBeCalled();
+        expect(callback).toBeCalledTimes(1);
+        expect(callback).toBe
+    })
+})
+
+
+```
+
 ## Libreria di test react
 
 ### Test di componenti front end
