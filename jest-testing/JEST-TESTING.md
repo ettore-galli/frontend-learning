@@ -191,28 +191,14 @@ describe("Test totalOrderQty", () => {
 ```typescript
 
 // definizione
+function remindMe(what: string, delay: number, action: (message: string) => void): void {
+    const remindMessage = `REMINDER: ${what}`;
 
-import { useState } from "react";
-
-class SelectorProps {
-    title: string | null = null;
+    setTimeout(() => { action(remindMessage) }, delay);
 }
 
-const Selector = (props: SelectorProps) => {
+export { remindMe };
 
-    const [selected, setSelected] = useState("");
-    const options: Array<number | string> = ["", "A", "B", "C"]
-    return <>
-        <div>{props.title}</div>
-        <div>{selected ? selected : "..."}</div>
-        <select onChange={(e) => setSelected(e.target.value)}>
-            {options.map(opt => <option key={opt} value={opt} >Opzione {opt}</option>)}
-        </select>
-    </>
-}
-
-
-export { Selector };
 
 // test
 
@@ -255,6 +241,8 @@ describe("Test reminder", () => {
 
 ## Libreria di test react
 
+<https://it.legacy.reactjs.org/docs/test-utils.html#act>
+
 ### Test di componenti front end
 
 <https://jestjs.io/docs/tutorial-react>
@@ -285,6 +273,33 @@ Reference sui tipi di asserzioni (jest-dom testing library)
 ### Esempi testing frontend
 
 ```typescript
+import { useState } from "react";
+
+class SelectorProps {
+    title: string | null = null;
+}
+
+const Selector = (props: SelectorProps) => {
+
+    const [selected, setSelected] = useState("");
+    const options: Array<number | string> = ["", "A", "B", "C"]
+    return <>
+        <div>{props.title}</div>
+        <div>{selected ? selected : "..."}</div>
+        <select onChange={(e) => setSelected(e.target.value)}>
+            {options.map(opt => <option key={opt} value={opt} >Opzione {opt}</option>)}
+        </select>
+    </>
+}
+
+
+export { Selector };
+
+```
+
+```typescript
+
+// definizione
 import { render } from '@testing-library/react';
 import { HeaderComponent } from '../../components/header/Header';
 
@@ -297,6 +312,41 @@ test('renders learn react link', () => {
   expect(nameHolder).toHaveAttribute("class", "user");
 
 });
+
+
+// test
+import { fireEvent, render } from "@testing-library/react";
+import { Selector } from "../../../components/selector/selector";
+
+describe("Test selector behaviour", () => {
+
+    it("responds to change", () => {
+        const rendered = render(<Selector title="Di Prova"></Selector>);
+
+        const mySelect = rendered.getByRole('combobox');
+
+        expect(mySelect).toHaveValue("")
+
+        fireEvent.change(mySelect, { target: { value: 'B' } });
+
+        expect(mySelect).toHaveValue("B");
+
+        fireEvent.change(mySelect, { target: { value: 'C' } });
+
+        expect(mySelect).toHaveValue("C");
+
+    })
+
+});
+
+```
+
+```typescript
+
+// definizione
+
+// test
+
 ```
 
 ## Altre note tecniche
