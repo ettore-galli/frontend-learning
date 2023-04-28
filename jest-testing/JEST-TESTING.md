@@ -241,7 +241,13 @@ describe("Test reminder", () => {
 
 ## Libreria di test react
 
+Act
+
 <https://it.legacy.reactjs.org/docs/test-utils.html#act>
+
+Wait For
+
+<https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
 
 ### Test di componenti front end
 
