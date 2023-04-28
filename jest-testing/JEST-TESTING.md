@@ -81,7 +81,7 @@ function totalizer(samples: number[], sumFunction: (samples: number[]) => number
     setTimeout(() => console.log(sumFunction(samples)), 0);
 };
 
-// test 
+// test
 
 describe("Test totalizer", () => {
     it("Richiama la somma", (done) => {
@@ -96,7 +96,7 @@ describe("Test totalizer", () => {
     })
 });
 
-```  
+```
 
 ### Test di codice asincrono - promise
 
@@ -156,7 +156,7 @@ function fetchOrder(orderNumber: number): Order {
     console.log("Called *actual* fetchOrder")
     return DATABASE.filter(order => order.orderNumber === orderNumber)[0];
 }
- 
+
 // definizione: modulo utente di data.ts
 function totalOrderQty(orderNumber: number): number {
     const order = fetchOrder(orderNumber);
@@ -232,7 +232,7 @@ describe("Test reminder", () => {
         jest.spyOn(global, 'setTimeout');
 
         remindMe("test", 1234, jest.fn());
- 
+
         expect(setTimeout).toHaveBeenCalledTimes(1);
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1234);
         expect(setTimeout).toHaveBeenLastCalledWith(expect.anything(), 1234);
@@ -267,7 +267,7 @@ describe("Test reminder", () => {
 
 ```const mySelect = rendered.getByRole('combobox');```typescript
 
-Esistono diversi selettori, per il ROle usare gli Aria Roles:
+Esistono diversi selettori, per il Role usare gli Aria Roles:
 
 <https://www.w3.org/TR/html-aria/#docconformance>
 
@@ -282,7 +282,22 @@ Esistono diversi selettori, per il ROle usare gli Aria Roles:
 Reference sui tipi di asserzioni (jest-dom testing library)
 <https://github.com/testing-library/jest-dom>
 
-### Esempio
+### Esempi testing frontend
+
+```typescript
+import { render } from '@testing-library/react';
+import { HeaderComponent } from '../../components/header/Header';
+
+test('renders learn react link', () => {
+  const userDescription = render(<HeaderComponent userDescription="example-usr-description" />)
+
+  const nameHolder = userDescription.getByText(/example/)
+  expect(nameHolder).toContainHTML("<div class=\"user\">example-usr-description</div>");
+  expect(nameHolder).toHaveTextContent("example-usr-description");
+  expect(nameHolder).toHaveAttribute("class", "user");
+
+});
+```
 
 ## Altre note tecniche
 
