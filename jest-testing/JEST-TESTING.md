@@ -241,14 +241,6 @@ describe("Test reminder", () => {
 
 ## Libreria di test react
 
-Act
-
-<https://it.legacy.reactjs.org/docs/test-utils.html#act>
-
-Wait For
-
-<https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
-
 ### Test di componenti front end
 
 <https://jestjs.io/docs/tutorial-react>
@@ -275,6 +267,28 @@ Esistono diversi selettori, per il Role usare gli Aria Roles:
 
 Reference sui tipi di asserzioni (jest-dom testing library)
 <https://github.com/testing-library/jest-dom>
+
+- Act
+
+<https://it.legacy.reactjs.org/docs/test-utils.html#act>
+
+Con render non è necessario incorporarlo in act(...) (vedi punto successivo)
+
+- Act e Wait For
+
+<https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
+
+```typescript
+  test('Renders name holder', async () => {
+    const userDescription = render(<HeaderComponent userDescription="example-usr-description" />)
+    const nameHolder = userDescription.getByText(/example/)
+    await waitFor(() => {
+      expect(nameHolder).toContainHTML("<div class=\"user\">example-usr-description</div>");
+      expect(nameHolder).toHaveTextContent("example-usr-description");
+      expect(nameHolder).toHaveAttribute("class", "user");
+    });
+  });
+  ```
 
 ### Esempi testing frontend
 
