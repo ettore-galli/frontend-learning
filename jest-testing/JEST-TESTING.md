@@ -269,7 +269,7 @@ describe("Test reminder", () => {
 
 Esistono diversi selettori, per il ROle usare gli Aria Roles:
 
-<https://www.w3.org/TR/html-aria/#docconformance>s
+<https://www.w3.org/TR/html-aria/#docconformance>
 
 - Trigger di eventi
 
