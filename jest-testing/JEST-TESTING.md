@@ -18,10 +18,6 @@ oppure:
 
 <https://create-react-app.dev/docs/running-tests/#filename-conventions>
 
-### Test di funzioni
-
-## Semplici test ed utilizzo di base
-
 ### Come avviare i test
 
 ```shell
@@ -44,7 +40,6 @@ function supersomma(a: number, b: number): number {
     }
 }
 
-
 export { supersomma }
 
 // test
@@ -66,7 +61,7 @@ describe("Test somma", () => {
 
 <https://jestjs.io/docs/asynchronous>
 
-- La funzione callback riceve done
+- La funzione callback riceve la callback ```done()```
 - Occorre richiamare done per indicare la fine del test
 
 ```typescript
@@ -121,6 +116,9 @@ describe("Test totalizer", () => {
 
 <https://jestjs.io/docs/mock-functions#using-a-mock-function>
 
+Mock Use state
+<https://www.linkedin.com/pulse/mocking-react-hooks-usestate-useeffect-leonard-lin/>
+
 ```typescript
 
 jest.fn()
@@ -144,6 +142,44 @@ describe("Test totaliser mock", () => {
         expect(mockCallback.mock.calls).toEqual([[[1, 2]]]);
     })
 });
+
+```
+
+### Mock di oggetti globali via Object.defineProperty
+
+```typescript
+
+// definizione
+// La funzione usa internamente window.location.search
+
+function funzione(){
+    return QualcosaFunzioneDi(window.location.search)
+}
+
+// test
+
+import { util } from "../../../core/utils/util"
+
+describe("Test", () => {
+    let originalWindowLocation: Location;
+
+    beforeAll(() => {
+        originalWindowLocation = window.location;
+    })
+
+    afterAll(() => {
+        Object.defineProperty(window, 'location', originalWindowLocation)
+    })
+
+    it("Test getObjectFromURIString", () => {
+        const search = "&x=1&y=2";
+        Object.defineProperty(window, 'location', { value: { search: search } })
+
+        const result = funzione();
+        expect(result).toEqual(...)
+    })
+
+})
 
 ```
 
