@@ -64,6 +64,9 @@ describe("Test somma", () => {
 - La funzione callback riceve la callback ```done()```
 - Occorre richiamare done per indicare la fine del test
 
+Cheat Sheet generico con focus sul test asincrono e mock:
+<https://www.codecademy.com/learn/learn-react-testing/modules/jest/cheatsheet>
+
 ```typescript
 
 // definizione
