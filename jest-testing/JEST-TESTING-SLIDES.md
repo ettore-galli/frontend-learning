@@ -247,30 +247,27 @@ describe("Test will sum", () => {
 
 ---
 
-## Tecniche di mock
-
-### Funzione mock (sostitutivo)
+# TECNICHE DI MOCK - MOCK DI FUNZIONI / 1
 
 <https://jestjs.io/docs/mock-functions#using-a-mock-function>
-
-Mock Use state
-<https://www.linkedin.com/pulse/mocking-react-hooks-usestate-useeffect-leonard-lin/>
 
 ```typescript
 
 jest.fn()
 jest.fn((...)=>...) // Con implementazione
 
-// definizione
-
 function willSumViaCallback(samples: number[], sumFunction: (samples: number[]) => number) {
     return new Promise((resolve) => {
         resolve(sumFunction(samples));
     });
 }
+```
 
-// test
+---
 
+# TECNICHE DI MOCK - MOCK DI FUNZIONI / 2 - Test
+
+```typescript
 describe("Test totaliser mock", () => {
     it("La callback è richiamata correttamente", () => {
         const mockCallback = jest.fn()
@@ -282,20 +279,27 @@ describe("Test totaliser mock", () => {
 
 ```
 
-### Mock di oggetti globali via Object.defineProperty
+---
+
+### MOCK DI OGGETTI GLOBALI / 1
+
+Es. window.location.search
+
+Object.defineProperty
 
 ```typescript
 
-// definizione
 // La funzione usa internamente window.location.search
 
 function funzione(){
     return QualcosaFunzioneDi(window.location.search)
 }
+```
 
-// test
+### MOCK DI OGGETTI GLOBALI / 2 - Test
 
-import { util } from "../../../core/utils/util"
+```typescript
+
 
 describe("Test", () => {
     let originalWindowLocation: Location;
@@ -310,6 +314,7 @@ describe("Test", () => {
 
     it("Test getObjectFromURIString", () => {
         const search = "&x=1&y=2";
+
         Object.defineProperty(window, 'location', { value: { search: search } })
 
         const result = funzione();
@@ -320,25 +325,43 @@ describe("Test", () => {
 
 ```
 
-### Mock di un modulo
+### MOCK DI UN MODULO / 1 - Illustrazione
+
+Modulo: data.ts
+```function fetchSomeData(...)```
+
+Modulo: application.ts
+Usa il modulo data.ts
+
+### MOCK DI UN MODULO / 2 - Codice
+
+---
+
+```typescript
+// definizione: data.ts
+function fetchOrder(orderNumber: number): Order {
+    return DATABASE.filter(order => order.orderNumber === orderNumber)[0];
+}
+```
+
+```typescript
+// definizione: application.ts
+function totalOrderQty(orderNumber: number): number {
+    const order = fetchOrder(orderNumber);
+    return total(order.items.map(row => row.quantity))
+}
+```
+
+### MOCK DI UN MODULO / 3 - Test
+
+---
 
 ```typescript
 
-// definizione: data.ts
-function fetchOrder(orderNumber: number): Order {
-    console.log("Called *actual* fetchOrder")
-    return DATABASE.filter(order => order.orderNumber === orderNumber)[0];
-}
-
-// definizione: modulo utente di data.ts
-function totalOrderQty(orderNumber: number): number {
-    const order = fetchOrder(orderNumber);
-    console.log("Order:", order.orderNumber, order.items);
-    return total(order.items.map(row => row.quantity))
-}
-
 // test
-const mockOrder: Order = new Order(123, [new OrderItem("pere", 7), new OrderItem("banane", 4)]);
+const mockOrder: Order = new Order(
+    123, [new OrderItem("pere", 7), new OrderItem("banane", 4)]
+    );
 
 jest.mock('../../lib/data', () => {
     return {
@@ -347,17 +370,17 @@ jest.mock('../../lib/data', () => {
     }
 });
 
-// ...
-
-describe("Test totalOrderQty", () => {
+describe("Test calculateTotalOnData", () => {
     it("Esegue la somma delle quantità", () => {
-        expect(totalOrderQty(1)).toEqual(11);
+        expect(calculateTotalOnData(1)).toEqual(11);
     })
 });
 
 ```
 
-### Mock di timer
+---
+
+### MOCK DI TIMER / 1
 
 <https://jestjs.io/docs/timer-mocks#run-all-timers>
 
@@ -372,7 +395,13 @@ function remindMe(what: string, delay: number, action: (message: string) => void
 
 export { remindMe };
 
+```
 
+---
+
+### MOCK DI TIMER / 2.1 - Test setup
+
+```typescript
 // test
 
 import { remindMe } from '../../lib/reminder';
@@ -386,6 +415,14 @@ describe("Test reminder", () => {
         jest.useRealTimers();
     })
 
+```
+
+---
+
+### MOCK DI TIMER / 2.2 - Test timer
+
+```typescript
+
     it("Esempio di mock di Timeout", () => {
 
         jest.spyOn(global, 'setTimeout');
@@ -398,6 +435,13 @@ describe("Test reminder", () => {
 
     })
 
+```
+
+---
+
+### MOCK DI TIMER / 2.3 - Avanzamento timer
+
+```typescript
     it("Esempio di simulazione di delay", () => {
         const callback = jest.fn();
         remindMe("test", 0, callback);
@@ -407,49 +451,73 @@ describe("Test reminder", () => {
         expect(callback).toBeCalledTimes(1);
         expect(callback).toBe
     })
-})
 
+});
 
 ```
 
-## Libreria di test react
+---
 
-### Test di componenti front end
+# LIBRERIA DI TEST REACT
 
+Testing library
+<https://testing-library.com>
+
+Test react
 <https://jestjs.io/docs/tutorial-react>
+
+Aria Roles
+<https://www.w3.org/TR/html-aria/#docconformance>
+
+Reference sui tipi di asserzioni (jest-dom testing library)
+<https://github.com/testing-library/jest-dom>
+
+---
+
+# LIBRERIA DI TEST REACT
+
+Concetti chiave:
+
+- Rendering
+- Selezione parziale di un componente renderizzato
+- Trigger di eventi
+- Asserzioni
+
+---
+
+# TEST DI COMPONENTI FRONT END / Rendering
 
 - Rendering di un componente o porzione di pagina
 
 ```const rendered = render(<Selector title="Di Prova"></Selector>);```typescript
 
+---
+
+# TEST DI COMPONENTI FRONT END / Selezione
+
 - Selector: Selezionare una porzione
 
 ```const mySelect = rendered.getByRole('combobox');```typescript
 
-Esistono diversi selettori, per il Role usare gli Aria Roles:
+---
 
-<https://www.w3.org/TR/html-aria/#docconformance>
-
-- Trigger di eventi
+# TEST DI COMPONENTI FRONT END / Trigger di eventi
 
 ```fireEvent.change(mySelect, { target: { value: 'B' } });```typescript
 
-- Asserzioni
+---
+
+# TEST DI COMPONENTI FRONT END / Asserzioni
 
 ```expect(mySelect).toHaveValue("B");```typescript
 
-Reference sui tipi di asserzioni (jest-dom testing library)
-<https://github.com/testing-library/jest-dom>
+# TEST DI COMPONENTI FRONT END / Eait For
 
-- Act
-
-<https://it.legacy.reactjs.org/docs/test-utils.html#act>
+Act: <https://it.legacy.reactjs.org/docs/test-utils.html#act>
 
 Con render non è necessario incorporarlo in act(...) (vedi punto successivo)
 
-- Act e Wait For
-
-<https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
+Wait For: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
 
 ```typescript
   test('Renders name holder', async () => {
@@ -463,7 +531,11 @@ Con render non è necessario incorporarlo in act(...) (vedi punto successivo)
   });
   ```
 
-### Esempi testing frontend
+---
+
+# TEST FRONT END: MOCK USE STATE / 1
+
+<https://www.linkedin.com/pulse/mocking-react-hooks-usestate-useeffect-leonard-lin/>
 
 ```typescript
 import { useState } from "react";
@@ -490,9 +562,13 @@ export { Selector };
 
 ```
 
+---
+
+# TEST FRONT END: MOCK USE STATE / 2 - Test rendering
+
 ```typescript
 
-// definizione
+
 import { render } from '@testing-library/react';
 import { HeaderComponent } from '../../components/header/Header';
 
@@ -506,8 +582,14 @@ test('renders learn react link', () => {
 
 });
 
+```
 
-// test
+---
+
+# TEST FRONT END: MOCK USE STATE / 3 - Test eventi
+
+```typescript
+
 import { fireEvent, render } from "@testing-library/react";
 import { Selector } from "../../../components/selector/selector";
 
@@ -531,23 +613,5 @@ describe("Test selector behaviour", () => {
     })
 
 });
-
-```
-
-```typescript
-
-// definizione
-
-// test
-
-```
-
-## Altre note tecniche
-
-### Setup applicazione di esempio
-
-```shell
-# Creazione app react
-npx create-react-app jest-testing --template typescript
 
 ```
