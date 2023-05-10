@@ -179,7 +179,6 @@ Cheat Sheet generico con focus sul test asincrono e mock:
 
 # TEST CALLBACK / 2 - Codice
 
-
 ```typescript
 function total(samples: number[]) {
     return samples.reduce((acc, cur) => acc + cur, 0);
@@ -255,10 +254,11 @@ it("Richiama la somma async", async () => {
 <https://jestjs.io/docs/mock-functions#using-a-mock-function>
 
 ```typescript
-
 jest.fn()
 jest.fn((...)=>...) // Con implementazione
+```
 
+```typescript
 function willSumViaCallback(samples: number[], sumFunction: (samples: number[]) => number) {
     return new Promise((resolve) => {
         resolve(sumFunction(samples));
@@ -299,10 +299,11 @@ function funzione(){
 }
 ```
 
+---
+
 ### MOCK DI OGGETTI GLOBALI / 2 - Test
 
 ```typescript
-
 
 describe("Test", () => {
     let originalWindowLocation: Location;
@@ -327,6 +328,8 @@ describe("Test", () => {
 })
 
 ```
+
+---
 
 ### MOCK DI UN MODULO / 1 - Illustrazione
 
