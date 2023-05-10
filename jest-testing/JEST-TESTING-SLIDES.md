@@ -6,14 +6,14 @@ marp: true
 
 ---
 
-# VIDEO INTRODUTTIVO
+## VIDEO INTRODUTTIVO
 
 (Richiede subscription a Linkedin Learning)
 <https://www.linkedin.com/learning/node-js-testing-and-code-quality-14003857/cleaning-your-codebase?autoplay=true>
 
 ---
 
-# DOCUMENTAZIONE DI BASE
+## DOCUMENTAZIONE DI BASE
 
 Sito ufficiale Jest
 <https://jestjs.io/docs/getting-started>
@@ -23,7 +23,7 @@ Convenzioni file test
 
 ---
 
-# SCELTA DI JEST
+## SCELTA DI JEST
 
 - Ampiamente diffuso e documentato
 - Standard di react
@@ -31,7 +31,7 @@ Convenzioni file test
 
 ---
 
-# AGENDA
+## AGENDA
 
 - Funzionamento di base + Test di codice asincrono
 - Tecniche di mock
@@ -39,7 +39,7 @@ Convenzioni file test
 
 ---
 
-# BASE - UN PRIMO ESEMPIO / 1 - Sorgente
+## BASE - UN PRIMO ESEMPIO / 1 - Sorgente
 
 Funzione da testare
 
@@ -59,7 +59,7 @@ export { somma }
 
 ---
 
-# BASE - UN PRIMO ESEMPIO / 2 - Test
+## BASE - UN PRIMO ESEMPIO / 2 - Test
 
 Implementazione del test
 
@@ -80,7 +80,7 @@ describe("Test somma", () => {
 
 ---
 
-# BASE - UN PRIMO ESEMPIO / 3 - Posizionamento test
+## BASE - UN PRIMO ESEMPIO / 3 - Posizionamento test
 
 ```[filename].test.[js|ts|jsx|tsx]```
 
@@ -104,7 +104,7 @@ src
 
 ---
 
-# BASE - UN PRIMO ESEMPIO / 4 - Avvio test
+## BASE - UN PRIMO ESEMPIO / 4 - Avvio test
 
 ```bash
 # Tutti i test
@@ -116,7 +116,7 @@ npm test npm test -- src/__tests__/lib/math.test.tsmath.test.tsx
 
 ---
 
-# BASE - UN PRIMO ESEMPIO / 5 - Esito test
+## BASE - UN PRIMO ESEMPIO / 5 - Esito test
 
 ```txt
  PASS  src/__tests__/lib/math.test.ts
@@ -135,7 +135,7 @@ Ran all test suites matching /src\/__tests__\/lib\/math.test.ts/i.
 
 ---
 
-# BASE - UN PRIMO ESEMPIO / 6 - Esito test con errori
+## BASE - UN PRIMO ESEMPIO / 6 - Esito test con errori
 
 ```txt
   ● Test somma › Esegue la somma
@@ -163,7 +163,7 @@ Time:        3.308 s
 
 ---
 
-# TEST CALLBACK / 1 - Introduzione
+## TEST CALLBACK / 1 - Introduzione
 
 _Testare una funzione che riceve una callback come argomento che richiama in modo asincrono, volendo testare che la callback venga chiamata nel modo opportuno._
 
@@ -177,7 +177,7 @@ Cheat Sheet generico con focus sul test asincrono e mock:
 
 ---
 
-# TEST CALLBACK / 2 - Codice
+## TEST CALLBACK / 2 - Codice
 
 ```typescript
 function total(samples: number[]) {
@@ -193,7 +193,7 @@ function totalizer(samples: number[], sumFunction: (samples: number[]) => number
 
 ---
 
-# TEST CALLBACK / 3 - Test
+## TEST CALLBACK / 3 - Test
 
 ```typescript
 describe("Test totalizer", () => {
@@ -213,9 +213,9 @@ describe("Test totalizer", () => {
 
 ---
 
-### TEST DI PROMISE E CODICE ASINCRONO / 1 - Codice
+## TEST DI PROMISE E CODICE ASINCRONO / 1 - Codice
 
-_Testare promise e codice asincrono in genere_
+_Testare promise e codice asincrono in genere._
 
 ```typescript
 function willSum(samples: number[]) {
@@ -227,7 +227,7 @@ function willSum(samples: number[]) {
 
 ---
 
-### TEST DI PROMISE E CODICE ASINCRONO / 2 - Test
+## TEST DI PROMISE E CODICE ASINCRONO / 2 - Test
 
 Si noti che i metodi di test sono _async_
 
@@ -249,7 +249,7 @@ it("Richiama la somma async", async () => {
 
 ---
 
-# TECNICHE DI MOCK - MOCK DI FUNZIONI / 1
+## TECNICHE DI MOCK - MOCK DI FUNZIONI / 1
 
 <https://jestjs.io/docs/mock-functions#using-a-mock-function>
 
@@ -268,7 +268,7 @@ function willSumViaCallback(samples: number[], sumFunction: (samples: number[]) 
 
 ---
 
-# TECNICHE DI MOCK - MOCK DI FUNZIONI / 2 - Test
+## TECNICHE DI MOCK - MOCK DI FUNZIONI / 2 - Test
 
 ```typescript
 describe("Test totaliser mock", () => {
@@ -284,7 +284,7 @@ describe("Test totaliser mock", () => {
 
 ---
 
-### MOCK DI OGGETTI GLOBALI / 1
+## MOCK DI OGGETTI GLOBALI / 1
 
 Es. window.location.search
 
@@ -301,7 +301,7 @@ function funzione(){
 
 ---
 
-### MOCK DI OGGETTI GLOBALI / 2 - Test
+## MOCK DI OGGETTI GLOBALI / 2 - Test
 
 ```typescript
 
@@ -331,7 +331,7 @@ describe("Test", () => {
 
 ---
 
-### MOCK DI UN MODULO / 1 - Illustrazione
+## MOCK DI UN MODULO / 1 - Illustrazione
 
 Modulo: data.ts
 ```function fetchSomeData(...)```
@@ -341,7 +341,7 @@ Usa il modulo data.ts
 
 ---
 
-### MOCK DI UN MODULO / 2 - Codice
+## MOCK DI UN MODULO / 2 - Codice
 
 ```typescript
 // definizione: data.ts
@@ -360,7 +360,7 @@ function totalOrderQty(orderNumber: number): number {
 
 ---
 
-### MOCK DI UN MODULO / 3 - Test
+## MOCK DI UN MODULO / 3 - Test
 
 ```typescript
 
@@ -386,7 +386,7 @@ describe("Test calculateTotalOnData", () => {
 
 ---
 
-### MOCK DI TIMER / 1
+## MOCK DI TIMER / 1
 
 <https://jestjs.io/docs/timer-mocks#run-all-timers>
 
@@ -405,7 +405,7 @@ export { remindMe };
 
 ---
 
-### MOCK DI TIMER / 2.1 - Test setup
+## MOCK DI TIMER / 2.1 - Test setup
 
 ```typescript
 // test
@@ -425,7 +425,7 @@ describe("Test reminder", () => {
 
 ---
 
-### MOCK DI TIMER / 2.2 - Test timer
+## MOCK DI TIMER / 2.2 - Test timer
 
 ```typescript
 
@@ -445,7 +445,7 @@ describe("Test reminder", () => {
 
 ---
 
-### MOCK DI TIMER / 2.3 - Avanzamento timer
+## MOCK DI TIMER / 2.3 - Avanzamento timer
 
 ```typescript
     it("Esempio di simulazione di delay", () => {
@@ -464,7 +464,7 @@ describe("Test reminder", () => {
 
 ---
 
-# LIBRERIA DI TEST REACT
+## LIBRERIA DI TEST REACT / Riferimenti
 
 Testing library
 <https://testing-library.com>
@@ -483,7 +483,7 @@ Utilizzo di WaitFor
 
 ---
 
-# LIBRERIA DI TEST REACT
+## LIBRERIA DI TEST REACT / Roadmap
 
 Concetti chiave e tipico workflow di un test:
 
@@ -494,7 +494,7 @@ Concetti chiave e tipico workflow di un test:
 
 ---
 
-# TEST DI COMPONENTI FRONT END / Rendering
+## TEST DI COMPONENTI FRONT END / Rendering
 
 - Rendering di un componente o porzione di pagina
 
@@ -502,7 +502,7 @@ Concetti chiave e tipico workflow di un test:
 
 ---
 
-# TEST DI COMPONENTI FRONT END / Selezione
+## TEST DI COMPONENTI FRONT END / Selezione
 
 - Selector: Selezionare una porzione
 
@@ -510,17 +510,17 @@ Concetti chiave e tipico workflow di un test:
 
 ---
 
-# TEST DI COMPONENTI FRONT END / Trigger di eventi
+## TEST DI COMPONENTI FRONT END / Trigger di eventi
 
 ```fireEvent.change(mySelect, { target: { value: 'B' } });```typescript
 
 ---
 
-# TEST DI COMPONENTI FRONT END / Asserzioni
+## TEST DI COMPONENTI FRONT END / Asserzioni
 
 ```expect(mySelect).toHaveValue("B");```typescript
 
-# TEST DI COMPONENTI FRONT END / Wait For
+## TEST DI COMPONENTI FRONT END / Wait For
 
 Act: <https://it.legacy.reactjs.org/docs/test-utils.html#act>
 
@@ -542,7 +542,7 @@ Wait For: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrappe
 
 ---
 
-# TEST FRONT END: MOCK USE STATE / 1
+## TEST FRONT END: MOCK USE STATE / 1
 
 <https://www.linkedin.com/pulse/mocking-react-hooks-usestate-useeffect-leonard-lin/>
 
@@ -573,7 +573,7 @@ export { Selector };
 
 ---
 
-# TEST FRONT END: MOCK USE STATE / 2 - Test rendering
+## TEST FRONT END: MOCK USE STATE / 2 - Test rendering
 
 ```typescript
 
@@ -595,7 +595,7 @@ test('renders learn react link', () => {
 
 ---
 
-# TEST FRONT END: MOCK USE STATE / 3 - Test eventi
+## TEST FRONT END: MOCK USE STATE / 3 - Test eventi
 
 ```typescript
 
