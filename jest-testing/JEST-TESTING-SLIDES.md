@@ -21,8 +21,6 @@ Sito ufficiale Jest
 Convenzioni file test
 <https://create-react-app.dev/docs/running-tests/#filename-conventions>
 
-Guida introduttiva
-<https://medium.com/rate-engineering/jest-testing-your-front-end-code-c73079269e8d>
 ---
 
 # SCELTA DI JEST
