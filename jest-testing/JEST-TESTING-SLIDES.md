@@ -33,7 +33,7 @@ Convenzioni file test
 
 # AGENDA
 
-- Funzionamento di base
+- Funzionamento di base + Test di codice asincrono
 - Tecniche di mock
 - Test di componenti frontend (renderizzati)
 
@@ -69,10 +69,10 @@ import { sommma } from 'il/modulo';
 
 describe("Test somma", () => {
     it("Esegue la somma", () => {
-        expect(supersomma(1, 2)).toEqual(3);
+        expect(somma(1, 2)).toEqual(3);
     })
     it("Esegue 1 + 1", () => {
-        expect(supersomma(1, 1)).toEqual(1.999999999874635);
+        expect(somma(1, 1)).toEqual(1.999999999874635);
     })
 })
 
@@ -80,7 +80,7 @@ describe("Test somma", () => {
 
 ---
 
-# BASE - UN PRIMO ESEMPIO / 3 - Posizionamento
+# BASE - UN PRIMO ESEMPIO / 3 - Posizionamento test
 
 ```[filename].test.[js|ts|jsx|tsx]```
 
@@ -99,7 +99,7 @@ src
     mylib/sub1/sub2
         myfunctions.ts
     __tests__/mylib/sub1/sub2
-    myfunctions.test.ts
+        myfunctions.test.ts
 ```
 
 ---
@@ -165,6 +165,8 @@ Time:        3.308 s
 
 # TEST CALLBACK / 1 - Introduzione
 
+_Testare una funzione che riceve una callback come argomento che richiama in modo asincrono, volendo testare che la callback venga chiamata nel modo opportuno._
+
 <https://jestjs.io/docs/asynchronous>
 
 - La funzione callback riceve la callback ```done()```
@@ -176,6 +178,7 @@ Cheat Sheet generico con focus sul test asincrono e mock:
 ---
 
 # TEST CALLBACK / 2 - Codice
+
 
 ```typescript
 function total(samples: number[]) {
@@ -213,6 +216,8 @@ describe("Test totalizer", () => {
 
 ### TEST DI PROMISE E CODICE ASINCRONO / 1 - Codice
 
+_Testare promise e codice asincrono in genere_
+
 ```typescript
 function willSum(samples: number[]) {
     return new Promise((resolve) => {
@@ -225,24 +230,22 @@ function willSum(samples: number[]) {
 
 ### TEST DI PROMISE E CODICE ASINCRONO / 2 - Test
 
-I metodi di test sono _async_
+Si noti che i metodi di test sono _async_
 
 ```typescript
 
 // Attraverso l'attributo _resolves_
-...
-    it("Richiama la somma con promise", async () => {
-        await expect(willSum([1, 2])).resolves.toEqual(3);
-    })
+it("Richiama la somma con promise", async () => {
+    await expect(willSum([1, 2])).resolves.toEqual(3);
+})
 
 
 // Via await
-describe("Test will sum", () => {
-    it("Richiama la somma async", async () => {
-        const result = await willSum([1, 2]);
-        expect(result).toEqual(3);
-    })
-...
+it("Richiama la somma async", async () => {
+    const result = await willSum([1, 2]);
+    expect(result).toEqual(3);
+})
+
 ```
 
 ---
