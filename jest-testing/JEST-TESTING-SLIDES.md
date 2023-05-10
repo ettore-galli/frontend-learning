@@ -478,15 +478,18 @@ Aria Roles
 Reference sui tipi di asserzioni (jest-dom testing library)
 <https://github.com/testing-library/jest-dom>
 
+Utilizzo di WaitFor
+<https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
+
 ---
 
 # LIBRERIA DI TEST REACT
 
-Concetti chiave:
+Concetti chiave e tipico workflow di un test:
 
-- Rendering
-- Selezione parziale di un componente renderizzato
-- Trigger di eventi
+- Rendering di un componente
+- Selezione di un componente renderizzato o parte di esso
+- Eventuale trigger di eventi
 - Asserzioni
 
 ---
