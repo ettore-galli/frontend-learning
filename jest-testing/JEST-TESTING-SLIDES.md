@@ -21,6 +21,8 @@ Sito ufficiale Jest
 Convenzioni file test
 <https://create-react-app.dev/docs/running-tests/#filename-conventions>
 
+Guida introduttiva
+<https://medium.com/rate-engineering/jest-testing-your-front-end-code-c73079269e8d>
 ---
 
 # SCELTA DI JEST
@@ -339,9 +341,9 @@ Modulo: data.ts
 Modulo: application.ts
 Usa il modulo data.ts
 
-### MOCK DI UN MODULO / 2 - Codice
-
 ---
+
+### MOCK DI UN MODULO / 2 - Codice
 
 ```typescript
 // definizione: data.ts
@@ -358,9 +360,9 @@ function totalOrderQty(orderNumber: number): number {
 }
 ```
 
-### MOCK DI UN MODULO / 3 - Test
-
 ---
+
+### MOCK DI UN MODULO / 3 - Test
 
 ```typescript
 
@@ -517,7 +519,7 @@ Concetti chiave:
 
 ```expect(mySelect).toHaveValue("B");```typescript
 
-# TEST DI COMPONENTI FRONT END / Eait For
+# TEST DI COMPONENTI FRONT END / Wait For
 
 Act: <https://it.legacy.reactjs.org/docs/test-utils.html#act>
 
