@@ -466,20 +466,19 @@ describe("Test reminder", () => {
 
 ## LIBRERIA DI TEST REACT / Riferimenti
 
-Testing library
-<https://testing-library.com>
+Testing library: <https://testing-library.com>
 
-Test react
-<https://jestjs.io/docs/tutorial-react>
+Test react: <https://jestjs.io/docs/tutorial-react>
 
 Aria Roles
 <https://www.w3.org/TR/html-aria/#docconformance>
 
-Reference sui tipi di asserzioni (jest-dom testing library)
-<https://github.com/testing-library/jest-dom>
+Reference sui tipi di asserzioni (jest-dom testing library): <https://github.com/testing-library/jest-dom>
 
-Utilizzo di WaitFor
-<https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
+Utilizzo di WaitFor: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
+
+Mock fetch tutorial: <https://medium.com/fernandodof/how-to-mock-fetch-calls-with-jest-a666ae1e7752>
+<https://medium.com/swlh/how-to-mock-a-fetch-api-request-with-jest-and-typescript-bb6adf673a00>
 
 ---
 
@@ -520,13 +519,22 @@ Concetti chiave e tipico workflow di un test:
 
 ```expect(mySelect).toHaveValue("B");```typescript
 
-## TEST DI COMPONENTI FRONT END / Wait For
+---
+
+## TEST DI COMPONENTI FRONT END / WaitFor - Motivazione
+
+WaitFor è un'utility che permette di testare componenti front end che vedono multipli eventi e re-render al loro interno.
+
+Il warning della libreria di testing che si ha in questi casi è
+
+_"When testing, code that causes React state updates should be wrapped into act(...)"_
 
 Act: <https://it.legacy.reactjs.org/docs/test-utils.html#act>
-
-Con render non è necessario incorporarlo in act(...) (vedi punto successivo)
-
 Wait For: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
+
+---
+
+## TEST DI COMPONENTI FRONT END / WaitFor - Utilizzo
 
 ```typescript
   test('Renders name holder', async () => {
@@ -624,3 +632,10 @@ describe("Test selector behaviour", () => {
 });
 
 ```
+
+---
+
+## IDEE: COSA TESTARE
+
+- Componenti di base
+- Funzionalità (es. wrapper di API)
