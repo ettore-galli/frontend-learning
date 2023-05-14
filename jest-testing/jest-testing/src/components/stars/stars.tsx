@@ -1,8 +1,18 @@
 import '../../App.css';
 
-function Stars() {
+function Star() {
+    return "*"
+}
+
+interface Props {
+    stars?: number
+}
+
+
+const Stars: React.FC<Props> = (props: Props) => {
+
     return (
-        <div className="App">*****</div>
+        <div className="App">{((Array.from(Array(props.stars || 5))).map(_ => "*")).join("")}</div>
     );
 }
 
