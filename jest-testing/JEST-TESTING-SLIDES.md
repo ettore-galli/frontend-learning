@@ -2,7 +2,7 @@
 marp: true
 style: |
     section {
-        background-color: #fefffe;
+        background-color: #eeffee;
     }
 
     h1 {
