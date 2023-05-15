@@ -1,15 +1,23 @@
 ---
 marp: true
+style: |
+    section {
+        background-color: #fefffe;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    h2 {
+        font-size: 50px;
+    }
+
 ---
 
 # FRONTEND TESTING - JEST
 
----
-
-## VIDEO INTRODUTTIVO
-
-(Richiede subscription a Linkedin Learning)
-<https://www.linkedin.com/learning/node-js-testing-and-code-quality-14003857/cleaning-your-codebase?autoplay=true>
+**Unit** test
 
 ---
 
@@ -527,9 +535,10 @@ WaitFor è un'utility che permette di testare componenti front end che vedono mu
 
 Il warning della libreria di testing che si ha in questi casi è
 
-_"When testing, code that causes React state updates should be wrapped into act(...)"_
+"When testing, code that causes React state updates should be wrapped into act(...)"
 
 Act: <https://it.legacy.reactjs.org/docs/test-utils.html#act>
+
 Wait For: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
 
 ---
@@ -639,3 +648,10 @@ describe("Test selector behaviour", () => {
 
 - Componenti di base
 - Funzionalità (es. wrapper di API)
+- Tutto ciò che ha "Logica"
+
+---
+
+## IDEE: PROSSIMI PASSI
+
+- Utilizzo estensivo in un progetto
