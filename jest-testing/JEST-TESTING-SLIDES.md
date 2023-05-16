@@ -1,16 +1,16 @@
 ---
 marp: true
 style: |
-    section {
-        background-color: #eeffee;
+    section, pre {
+        background-color: #ffffee;
     }
 
     h1 {
-        font-size: 60px;
+        text-align: center;
     }
 
     h2 {
-        font-size: 50px;
+        text-align: center;
     }
 
 ---
