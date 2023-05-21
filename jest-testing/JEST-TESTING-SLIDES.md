@@ -2,7 +2,7 @@
 marp: true
 style: |
     section, pre {
-        background-color: #ffffee;
+        background-color: #ffffff;
     }
 
     h1 {
@@ -13,21 +13,15 @@ style: |
         text-align: center;
     }
 
+    .centrato {
+        text-align: center;
+    }
+
 ---
 
 # FRONTEND TESTING - JEST
 
-**Unit** test
-
----
-
-## DOCUMENTAZIONE DI BASE
-
-Sito ufficiale Jest
-<https://jestjs.io/docs/getting-started>
-
-Convenzioni file test
-<https://create-react-app.dev/docs/running-tests/#filename-conventions>
+come realizzare **Unit test** in ambito javascript/typescript frontend
 
 ---
 
@@ -42,7 +36,7 @@ Convenzioni file test
 ## AGENDA
 
 - Funzionamento di base + Test di codice asincrono
-- Tecniche di mock
+- Tecniche di mock generali (codice asincrono, timer, ecc..)
 - Test di componenti frontend (renderizzati)
 
 ---
@@ -175,13 +169,8 @@ Time:        3.308 s
 
 _Testare una funzione che riceve una callback come argomento che richiama in modo asincrono, volendo testare che la callback venga chiamata nel modo opportuno._
 
-<https://jestjs.io/docs/asynchronous>
-
 - La funzione callback riceve la callback ```done()```
 - Occorre richiamare done per indicare la fine del test
-
-Cheat Sheet generico con focus sul test asincrono e mock:
-<https://www.codecademy.com/learn/learn-react-testing/modules/jest/cheatsheet>
 
 ---
 
@@ -258,8 +247,6 @@ it("Richiama la somma async", async () => {
 ---
 
 ## TECNICHE DI MOCK - MOCK DI FUNZIONI / 1
-
-<https://jestjs.io/docs/mock-functions#using-a-mock-function>
 
 ```typescript
 jest.fn()
@@ -396,8 +383,6 @@ describe("Test calculateTotalOnData", () => {
 
 ## MOCK DI TIMER / 1
 
-<https://jestjs.io/docs/timer-mocks#run-all-timers>
-
 ```typescript
 
 // definizione
@@ -472,24 +457,6 @@ describe("Test reminder", () => {
 
 ---
 
-## LIBRERIA DI TEST REACT / Riferimenti
-
-Testing library: <https://testing-library.com>
-
-Test react: <https://jestjs.io/docs/tutorial-react>
-
-Aria Roles
-<https://www.w3.org/TR/html-aria/#docconformance>
-
-Reference sui tipi di asserzioni (jest-dom testing library): <https://github.com/testing-library/jest-dom>
-
-Utilizzo di WaitFor: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
-
-Mock fetch tutorial: <https://medium.com/fernandodof/how-to-mock-fetch-calls-with-jest-a666ae1e7752>
-<https://medium.com/swlh/how-to-mock-a-fetch-api-request-with-jest-and-typescript-bb6adf673a00>
-
----
-
 ## LIBRERIA DI TEST REACT / Roadmap
 
 Concetti chiave e tipico workflow di un test:
@@ -537,10 +504,6 @@ Il warning della libreria di testing che si ha in questi casi è
 
 "When testing, code that causes React state updates should be wrapped into act(...)"
 
-Act: <https://it.legacy.reactjs.org/docs/test-utils.html#act>
-
-Wait For: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
-
 ---
 
 ## TEST DI COMPONENTI FRONT END / WaitFor - Utilizzo
@@ -560,8 +523,6 @@ Wait For: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrappe
 ---
 
 ## TEST FRONT END: MOCK USE STATE / 1
-
-<https://www.linkedin.com/pulse/mocking-react-hooks-usestate-useeffect-leonard-lin/>
 
 ```typescript
 import { useState } from "react";
@@ -655,3 +616,56 @@ describe("Test selector behaviour", () => {
 ## IDEE: PROSSIMI PASSI
 
 - Utilizzo estensivo in un progetto
+
+---
+
+## DOCUMENTAZIONE - GENERALE
+
+Sito ufficiale Jest
+<https://jestjs.io/docs/getting-started>
+
+Convenzioni file test
+<https://create-react-app.dev/docs/running-tests/#filename-conventions>
+
+---
+
+## DOCUMENTAZIONE - TEST CALLBACK
+
+Sezione documentazione di Jest
+<https://jestjs.io/docs/asynchronous>
+
+Cheat Sheet generico con focus sul test asincrono e mock:
+<https://www.codecademy.com/learn/learn-react-testing/modules/jest/cheatsheet>
+
+---
+
+## DOCUMENTAZIONE - MOCK
+
+Mock di funzioni
+<https://jestjs.io/docs/mock-functions#using-a-mock-function>
+
+Mock di timer
+<https://jestjs.io/docs/timer-mocks#run-all-timers>
+
+---
+
+## DOCUMENTAZIONE - LIBRERIA DI TEST REACT
+
+Testing library: <https://testing-library.com>
+
+Test react: <https://jestjs.io/docs/tutorial-react>
+
+Aria Roles
+<https://www.w3.org/TR/html-aria/#docconformance>
+
+Reference sui tipi di asserzioni (jest-dom testing library): <https://github.com/testing-library/jest-dom>
+
+Utilizzo di WaitFor: <https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b>
+
+Act (in trealtà non necessaria): <https://it.legacy.reactjs.org/docs/test-utils.html#act>
+
+Mock fetch tutorial: <https://medium.com/fernandodof/how-to-mock-fetch-calls-with-jest-a666ae1e7752>
+<https://medium.com/swlh/how-to-mock-a-fetch-api-request-with-jest-and-typescript-bb6adf673a00>
+
+Mock Use State
+<https://www.linkedin.com/pulse/mocking-react-hooks-usestate-useeffect-leonard-lin/>
