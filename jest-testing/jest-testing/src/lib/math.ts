@@ -18,7 +18,19 @@ function totalizer(samples: number[], sumFunction: (samples: number[]) => number
 }
 
 function willSum(samples: number[]) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+        if (samples.some(item => item > 1000)) {
+            reject("Some items are too big")
+        }
+        resolve(total(samples));
+    });
+}
+
+function willSumSmallNumbers(samples: number[]) {
+    return new Promise((resolve, reject) => {
+        if (samples.some(item => item > 1000)) {
+            reject("Some items are too big")
+        }
         resolve(total(samples));
     });
 }
@@ -52,6 +64,7 @@ export {
     average,
     futureAverage,
     willSum,
+    willSumSmallNumbers,
     totalizer,
     willSumViaCallback,
     totalOrderQty

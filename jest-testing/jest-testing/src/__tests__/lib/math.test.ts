@@ -3,6 +3,7 @@ import {
     supersomma,
     totalizer,
     willSum,
+    willSumSmallNumbers,
     willSumViaCallback,
     totalOrderQty
 } from '../../lib/math';
@@ -49,6 +50,13 @@ describe("Test totalizer", () => {
 describe("Test will sum", () => {
     it("Richiama la somma con promise", async () => {
         await expect(willSum([1, 2])).resolves.toEqual(3);
+    })
+})
+
+// Promise / rejected
+describe("Test will sum small numbers", () => {
+    it("Fallisce", async () => {
+        await expect(willSumSmallNumbers([1, 2, 1001])).rejects.toEqual("Some items are too big");
     })
 })
 

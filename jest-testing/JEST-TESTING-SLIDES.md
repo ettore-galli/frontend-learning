@@ -35,7 +35,8 @@ come realizzare **Unit test** in ambito javascript/typescript frontend
 
 ## AGENDA
 
-- Funzionamento di base + Test di codice asincrono
+- Funzionamento di base
+- Test di codice asincrono (callback)
 - Tecniche di mock generali (codice asincrono, timer, ecc..)
 - Test di componenti frontend (renderizzati)
 
@@ -73,7 +74,8 @@ describe("Test somma", () => {
     it("Esegue la somma", () => {
         expect(somma(1, 2)).toEqual(3);
     })
-    it("Esegue 1 + 1", () => {
+    // test <==> it (alias)
+    test("Esegue 1 + 1", () => {
         expect(somma(1, 1)).toEqual(1.999999999874635);
     })
 })
@@ -241,6 +243,32 @@ it("Richiama la somma async", async () => {
     const result = await willSum([1, 2]);
     expect(result).toEqual(3);
 })
+
+```
+
+---
+
+## TEST DI PROMISE E CODICE ASINCRONO / 3 - Promise rejected
+
+```typescript
+
+// Codice
+function willSumSmallNumbers(samples: number[]) {
+    return new Promise((resolve, reject) => {
+        if (samples.some(item => item > 1000)) {
+            reject("Some items are too big")
+        }
+        resolve(total(samples));
+    });
+}
+
+// Test
+describe("Test will sum small numbers", () => {
+    it("Fallisce", async () => {
+        await expect(willSumSmallNumbers([1, 2, 1001])).rejects.toEqual("Some items are too big");
+    })
+})
+
 
 ```
 
