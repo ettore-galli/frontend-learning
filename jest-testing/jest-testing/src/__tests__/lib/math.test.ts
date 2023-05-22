@@ -60,6 +60,19 @@ describe("Test will sum small numbers", () => {
     })
 })
 
+
+// Test
+describe("Test will sum small numbers", () => {
+    it("Fallisce", async () => {
+        try {
+            const result = await willSumSmallNumbers([1, 2, 1001]);
+            expect(result).toBe(null); // never called
+        } catch (e) {
+            expect(e).toEqual("Some items are too big");
+        }
+    })
+})
+
 // Async/Await
 describe("Test will sum", () => {
     it("Richiama la somma async", async () => {
