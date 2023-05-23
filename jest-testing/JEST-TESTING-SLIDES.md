@@ -115,7 +115,7 @@ src
 npm test
 
 # Uno specifico sorgente
-npm test npm test -- src/__tests__/lib/math.test.tsmath.test.tsx
+npm test -- src/__tests__/lib/math.test.tsmath.test.tsx
 ```
 
 ---
@@ -509,7 +509,7 @@ Concetti chiave e tipico workflow di un test:
 
 - Rendering di un componente o porzione di pagina
 
-```const rendered = render(<Selector title="Di Prova"></Selector>);```typescript
+```const rendered = render(<Selector title="Di Prova"></Selector>);```
 
 ---
 
@@ -517,19 +517,19 @@ Concetti chiave e tipico workflow di un test:
 
 - Selector: Selezionare una porzione
 
-```const mySelect = rendered.getByRole('combobox');```typescript
+```const mySelect = rendered.getByRole('combobox');```
 
 ---
 
 ## TEST DI COMPONENTI FRONT END / Trigger di eventi
 
-```fireEvent.change(mySelect, { target: { value: 'B' } });```typescript
+```fireEvent.change(mySelect, { target: { value: 'B' } });```
 
 ---
 
 ## TEST DI COMPONENTI FRONT END / Asserzioni
 
-```expect(mySelect).toHaveValue("B");```typescript
+```expect(mySelect).toHaveValue("B");```
 
 ---
 
@@ -546,16 +546,16 @@ Il warning della libreria di testing che si ha in questi casi è
 ## TEST DI COMPONENTI FRONT END / WaitFor - Utilizzo
 
 ```typescript
-  test('Renders name holder', async () => {
+test('Renders name holder', async () => {
     const userDescription = render(<HeaderComponent userDescription="example-usr-description" />)
     const nameHolder = userDescription.getByText(/example/)
     await waitFor(() => {
-      expect(nameHolder).toContainHTML("<div class=\"user\">example-usr-description</div>");
-      expect(nameHolder).toHaveTextContent("example-usr-description");
-      expect(nameHolder).toHaveAttribute("class", "user");
+    expect(nameHolder).toContainHTML("<div class=\"user\">example-usr-description</div>");
+    expect(nameHolder).toHaveTextContent("example-usr-description");
+    expect(nameHolder).toHaveAttribute("class", "user");
     });
-  });
-  ```
+});
+```
 
 ---
 
