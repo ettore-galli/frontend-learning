@@ -369,6 +369,8 @@ Modulo: data.ts
 Modulo: application.ts
 Usa il modulo data.ts
 
+Vogliamo testare una funzione di application.ts moccando il risultato della funzione definita in data.ts
+
 ---
 
 ## MOCK DI UN MODULO / 2 - Codice

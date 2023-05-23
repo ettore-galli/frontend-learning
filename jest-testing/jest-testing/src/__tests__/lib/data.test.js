@@ -1,7 +1,7 @@
 import { Order, OrderItem, fetchOrder } from '../../lib/data';
 
 describe("Objects behave properly", () => {
-    it("Can instantiate obkects", () => {
+    it("Can instantiate objects", () => {
         const oItem = new OrderItem("x", 1);
         const ord = new Order(1, [oItem]);
         expect(ord).toEqual({ "items": [{ "item": "x", "quantity": 1 }], "orderNumber": 1 })
