@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.css';
 import { Selector } from './components/selector/selector';
 import { remindMe } from './lib/reminder';
+import { Address } from './components/address/address';
 
 function App() {
 
@@ -38,7 +39,9 @@ function App() {
             }
 
           </div>
-          <div className="testCaseContainer">&nbsp;</div>
+          <div className="testCaseContainer">
+            <Address />
+          </div>
           <div className="testCaseContainer">&nbsp;</div>
           <div className="testCaseContainer">&nbsp;</div>
           <div className="testCaseContainer">&nbsp;</div>

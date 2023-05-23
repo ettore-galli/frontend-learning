@@ -309,16 +309,21 @@ describe("Test totaliser mock", () => {
 
 ## MOCK DI OGGETTI GLOBALI / 1
 
-Es. window.location.search
+Es. window.location.href
 
 Object.defineProperty
 
 ```typescript
 
-// La funzione usa internamente window.location.search
+// La funzione usa internamente window.location.href
 
-function funzione(){
-    return QualcosaFunzioneDi(window.location.search)
+const Address = (props: AddressProps) => {
+
+    const address: string = window.location.href;
+
+    return <>
+        <div>You are here: {address}</div>
+    </>
 }
 ```
 
@@ -328,26 +333,28 @@ function funzione(){
 
 ```typescript
 
-describe("Test", () => {
-    let originalWindowLocation: Location;
+describe('Test address', () => {
+    let originalLocation: Location;
 
     beforeAll(() => {
-        originalWindowLocation = window.location;
+        originalLocation = window.location;
     })
 
     afterAll(() => {
-        Object.defineProperty(window, 'location', originalWindowLocation)
+        Object.defineProperty(window, 'location', originalLocation)
     })
 
-    it("Test getObjectFromURIString", () => {
-        const search = "&x=1&y=2";
+    it("Renders correctly", () => {
 
-        Object.defineProperty(window, 'location', { value: { search: search } })
+        Object.defineProperty(window, 'location', { value: { href: "https://my.web.address.xyz" } })
 
-        const result = funzione();
-        expect(result).toEqual(...)
+        const rendered = render(<Address />);
+
+        const element = rendered.getByText("You are here: https://my.web.address.xyz");
+        expect(element).toHaveTextContent("You are here")
+
+
     })
-
 })
 
 ```
