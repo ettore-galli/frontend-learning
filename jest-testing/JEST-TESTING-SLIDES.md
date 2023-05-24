@@ -509,7 +509,9 @@ Concetti chiave e tipico workflow di un test:
 
 - Rendering di un componente o porzione di pagina
 
-```const rendered = render(<Selector title="Di Prova"></Selector>);```
+```typescript
+const rendered = render(<Selector title="Di Prova"></Selector>);
+```
 
 ---
 
@@ -517,19 +519,25 @@ Concetti chiave e tipico workflow di un test:
 
 - Selector: Selezionare una porzione
 
-```const mySelect = rendered.getByRole('combobox');```
+```typescript
+const mySelect = rendered.getByRole('combobox');
+```
 
 ---
 
 ## TEST DI COMPONENTI FRONT END / Trigger di eventi
 
-```fireEvent.change(mySelect, { target: { value: 'B' } });```
+```typescript
+fireEvent.change(mySelect, { target: { value: 'B' } });
+```
 
 ---
 
 ## TEST DI COMPONENTI FRONT END / Asserzioni
 
-```expect(mySelect).toHaveValue("B");```
+```typescript
+expect(mySelect).toHaveValue("B");
+```
 
 ---
 
