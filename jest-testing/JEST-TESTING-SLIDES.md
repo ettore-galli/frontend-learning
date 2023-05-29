@@ -13,6 +13,10 @@ style: |
         text-align: center;
     }
 
+    h6 {
+        color: #009900;
+    }
+
     .centrato {
         text-align: center;
     }
@@ -652,6 +656,8 @@ describe("Test selector behaviour", () => {
 
 ## IDEE: COSA TESTARE
 
+Idealmente "il più possibile", primo focus su:
+
 - Componenti di base
 - Funzionalità (es. wrapper di API)
 - Tutto ciò che ha "Logica"
@@ -661,6 +667,7 @@ describe("Test selector behaviour", () => {
 ## IDEE: PROSSIMI PASSI
 
 - Utilizzo estensivo in un progetto
+- Estensione ad altri framework
 
 ---
 
