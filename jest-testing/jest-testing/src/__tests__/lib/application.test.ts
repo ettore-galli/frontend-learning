@@ -7,7 +7,7 @@ const mockOrder: Order = new Order(123, [new OrderItem("pere", 7), new OrderItem
 jest.mock('../../lib/data', () => {
     return {
         ...jest.requireActual('../../lib/data'),
-        fetchOrder: (orderNumber: number) => mockOrder
+        fetchOrder: (_: number) => mockOrder
     }
 });
 
