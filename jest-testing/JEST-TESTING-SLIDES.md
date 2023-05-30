@@ -41,7 +41,7 @@ come realizzare **Unit test** in ambito javascript/typescript frontend
 
 - Funzionamento di base
 - Test di codice asincrono (callback)
-- Tecniche di mock generali (codice asincrono, timer, ecc..)
+- Tecniche di mock generali (funzioni mock, mock moduli, timer, ecc..)
 - Test di componenti frontend (renderizzati)
 
 ---
@@ -120,6 +120,9 @@ npm test
 
 # Uno specifico sorgente
 npm test -- src/__tests__/lib/math.test.tsmath.test.tsx
+
+# Con report di coverage
+npm test -- src/__tests__ --coverage
 ```
 
 ---
@@ -167,6 +170,20 @@ Test Suites: 1 failed, 1 total
 Tests:       1 failed, 7 passed, 8 total
 Snapshots:   0 total
 Time:        3.308 s
+```
+
+---
+
+## BASE - UN PRIMO ESEMPIO / 7 - Avvio test in modalità CI
+
+Jest rileva la variabile d'ambiente ```CI```
+
+Se impostata, non esegue in watch mode (il default)
+
+```shell
+export CI=true
+
+npm test
 ```
 
 ---
