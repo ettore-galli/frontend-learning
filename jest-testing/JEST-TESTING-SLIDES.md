@@ -222,7 +222,7 @@ describe("Test totalizer", () => {
             try {
                 expect(samples).toEqual([1, 2])
                 return done();
-            } catch (err) {
+            } catch (error) {
                 return done(error)
             }
         })
@@ -429,9 +429,9 @@ jest.mock('../../lib/data', () => {
     }
 });
 
-describe("Test calculateTotalOnData", () => {
+describe("Test totalOrderQty", () => {
     it("Esegue la somma delle quantità", () => {
-        expect(calculateTotalOnData(1)).toEqual(11);
+        expect(totalOrderQty(1)).toEqual(11);
     })
 });
 
@@ -506,7 +506,6 @@ describe("Test reminder", () => {
         jest.runAllTimers();
         expect(callback).toBeCalled();
         expect(callback).toBeCalledTimes(1);
-        expect(callback).toBe
     })
 
 });
@@ -612,28 +611,6 @@ const Selector = (props: SelectorProps) => {
 
 
 export { Selector };
-
-```
-
----
-
-## TEST FRONT END: MOCK USE STATE / 2 - Test rendering
-
-```typescript
-
-
-import { render } from '@testing-library/react';
-import { HeaderComponent } from '../../components/header/Header';
-
-test('renders learn react link', () => {
-  const userDescription = render(<HeaderComponent userDescription="example-usr-description" />)
-
-  const nameHolder = userDescription.getByText(/example/)
-  expect(nameHolder).toContainHTML("<div class=\"user\">example-usr-description</div>");
-  expect(nameHolder).toHaveTextContent("example-usr-description");
-  expect(nameHolder).toHaveAttribute("class", "user");
-
-});
 
 ```
 
