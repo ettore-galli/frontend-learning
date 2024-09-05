@@ -1,5 +1,6 @@
 import { RiArchive2Line } from "react-icons/ri";
 import Search from "./components/Search";
+import AddAppointment from "./components/AddAppointment";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         <RiArchive2Line className='inline-block text-red-400 align-top' /> Your appointments
       </h1>
       <Search />
+      <AddAppointment />
     </div>
   );
 }
