@@ -11,7 +11,7 @@ https://tailwindcss.com/docs/guides/vite
 
 npm install -D tailwindcss postcss autoprefixer
 
-
+npm install -D @tailwindcss/forms
 
 
 
