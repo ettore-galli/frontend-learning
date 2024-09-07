@@ -4,10 +4,22 @@ import Search from "./components/Search";
 import AddAppointment from "./components/AddAppointment";
 import AppointmentInfo from "./components/AppointmentInfo";
 
-import AppointmentsRepo from "./repo/AppointmentsRepo";
+import { appointmentsRepo, AppointmentDetail } from "./repo/AppointmentsRepo";
+import { useState, useCallback, useEffect } from "react";
 
 function App() {
-  const appointmentsRepo = new AppointmentsRepo();
+
+  const [appointmentsList, setAppointmentsList] = useState<AppointmentDetail[]>([]);
+
+  const fetchAppointmentsAsyncHook = () => { appointmentsRepo.getAppointmentsList().then((apps) => { setAppointmentsList(apps) }) }
+
+  const fetchAppointments = useCallback(fetchAppointmentsAsyncHook, [appointmentsList])
+
+  const deleteAppointment = (id: string): void => {
+    appointmentsRepo.deleteAppointment(id).then(fetchAppointmentsAsyncHook);
+  }
+
+  useEffect(() => { fetchAppointments() }, [fetchAppointments])
 
   return (
     <div className="App container mx-auto mt-3 font-thin">
@@ -17,9 +29,11 @@ function App() {
       <Search />
       <AddAppointment />
       <ul className="divide-y divide-gray-200">
-        {appointmentsRepo.getAppointmentsList().map(appointment => (
+        {appointmentsList.map(appointment => (
           <AppointmentInfo
+            key={appointment.id}
             appointment={appointment}
+            deleteAppointmentHook={deleteAppointment}
           />
         ))}
       </ul>
