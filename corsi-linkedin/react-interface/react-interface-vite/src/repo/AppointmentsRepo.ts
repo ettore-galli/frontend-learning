@@ -1,11 +1,18 @@
 import appointmentsDataBase from '../../mock-data/appointments.json'
 
+type OrderType = "asc" | "desc";
+
 export interface AppointmentDetail {
     id: string
     petName: string
     aptDate: string
     ownerName: string
     aptNotes: string
+}
+
+export interface OrderingCriteria {
+    orderBy: keyof AppointmentDetail
+    orderType: OrderType
 }
 
 class AppointmentsRepo {
@@ -16,10 +23,32 @@ class AppointmentsRepo {
 
     }
 
-    getAppointmentsList(): Promise<AppointmentDetail[]> {
+    filterAppointmentsByQuery(appointments: AppointmentDetail[], query: string): AppointmentDetail[] {
+        return query ? (appointments.filter((item) => {
+            return JSON.stringify(item).includes(query)
+        })) : appointments
+    }
+    sortAppointmentsByCriteria(appointments: AppointmentDetail[], ordering: OrderingCriteria): AppointmentDetail[] {
+        const compare = (a: AppointmentDetail, b: AppointmentDetail): number => {
+            const sorter: number = (a[ordering.orderBy].toLowerCase() < b[ordering.orderBy].toLowerCase()) ? 1 : -1;
+            const reverser: number = ordering.orderType === "asc" ? 1 : -1;
+            console.log(`--> ${a[ordering.orderBy].toLowerCase()}, ${b[ordering.orderBy].toLowerCase()}, ${ordering.orderType} => ${sorter * reverser}`)
+            return sorter * reverser;
+        }
+        return appointments.sort(compare
+
+        )
+
+    }
+    getAppointmentsList(query: string, ordering: OrderingCriteria): Promise<AppointmentDetail[]> {
         return (new Promise<AppointmentDetail[]>((resolve, reject) => {
             try {
-                resolve(this.appts)
+                resolve(
+                    this.sortAppointmentsByCriteria(
+                        this.filterAppointmentsByQuery(this.appts, query)
+                        , ordering
+                    )
+                )
             } catch (error) {
                 reject({ error })
             }
@@ -41,12 +70,13 @@ class AppointmentsRepo {
     }
 
 
-    // this.appts = this.appts.filter(item => {
-    //     return item.id != appointmentId
-    // })
+
 
 }
 
 
 
-export const appointmentsRepo = new AppointmentsRepo();
+const appointmentsRepo = new AppointmentsRepo();
+
+export { appointmentsRepo };
+export type { OrderType };
