@@ -57,7 +57,6 @@ const DropDown = (props: DropDownProps) => {
 const Search = (props: SearchProps) => {
 
     const { query, queryChangeHook, orderingCriteria, setOrderBy, setOrderType } = props;
-    console.log(query)
     const [dropDownVisible, setDropDownVisible] = useState(false);
 
     const toggleDropDownVisible = () => {
