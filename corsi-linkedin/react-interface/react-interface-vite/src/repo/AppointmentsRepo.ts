@@ -73,7 +73,7 @@ class AppointmentsRepo {
                 }
 
                 this.appts.push(newAppointment);
-
+                console.log("pushed", newAppointment)
                 resolve({ success: true });
             } catch (error) {
                 reject({ error })
