@@ -31,7 +31,7 @@ function App() {
 
   const setNewAppointment = (appointment: AppointmentDetail): void => {
     console.log("setNewAppointment", appointment)
-    appointmentsRepo.insertAppointment(appointment).then(refreshAppointmentsList)
+    appointmentsRepo.insertAppointment(appointment).then(fetchAppointments)
   }
 
 
