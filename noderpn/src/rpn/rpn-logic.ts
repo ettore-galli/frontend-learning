@@ -86,9 +86,20 @@ const processRPNStep = (acc: any[], token: any): any[] => {
 }
 
 const evaluateRPN = (tokens: string[]): RPNResult => {
-    return checkRPN(tokens) ? new RPNResult(true,
-        tokens.map(item => isNumeric(item) ? Number(item) : item).reduce(processRPNStep, [])) :
-        new RPNResult(false, tokens);
+    if (!checkRPN(tokens)) {
+        return new RPNResult(false, tokens);
+    }
+
+    let stack: any[] = [];
+
+    for (const token of tokens) {
+        stack = processRPNStep(stack, token);
+        if (stack[stack.length - 1] instanceof Error) {
+            return new RPNResult(false, stack);
+        }
+    }
+    return new RPNResult(true, stack);
+
 }
 
 export { TokenType, OperatorType, Token, isNumeric, classifyToken, identifyOperator, RPNResult, checkRPN, evaluateRPN, processRPNStep };

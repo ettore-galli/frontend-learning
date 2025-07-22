@@ -31,11 +31,12 @@ test.each([
     expect(result).toEqual(expectedStack);
 });
 
-// test.each([
-//     [["1", "2", "+", "4", "*"], new RPNResult(true, [3, 4, "*"])],
-//     [["1", "q", "+", "x", "wetyt"], new RPNResult(false, ["1", "q", "+", "x", "wetyt"])],
-// ])("evaluateRPN", (tokens: string[], expectedResult) => {
-//     const result = evaluateRPN(tokens);
-//     expect(result).toEqual(expectedResult);
-// });
+
+test.each([
+    [["1", "2", "+", "4", "*"], new RPNResult(true, [12])],
+    [["1", "q", "+", "x", "wetyt"], new RPNResult(false, ["1", "q", "+", "x", "wetyt"])],
+])("evaluateRPN", (tokens: string[], expectedResult) => {
+    const result = evaluateRPN(tokens);
+    expect(result).toEqual(expectedResult);
+});
 
