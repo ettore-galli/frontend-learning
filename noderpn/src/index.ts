@@ -1,8 +1,9 @@
-import { evaluateRPN } from "./rpn/rpn-logic";
+import { evaluateRPN, RPNResult } from "./rpn/rpn-logic";
+import { renderCalcResult } from "./rpn/rpn-output";
 
 const main = (args: string[]): void => {
-  console.log("Evaluating RPN expression:", args);
-  console.log(console.log(evaluateRPN(args)));
+  const result: RPNResult = evaluateRPN(args);
+  renderCalcResult(result, console.log);
 }
 
 

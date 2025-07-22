@@ -61,22 +61,34 @@ const processRPNStep = (acc: any[], token: any): any[] => {
             return [...acc, new Error("Insufficient values in the stack for operation")];
         }
 
-        const [a, b] = acc.slice(-2);
-        const leftAcc = acc.slice(0, -2);
-
-
         switch (identifyOperator(String(token))) {
             case OperatorType.ADDITION:
-                return [...leftAcc, a + b];
-            case OperatorType.SUBTRACTION:
-                return [...leftAcc, a - b];
-            case OperatorType.MULTIPLICATION:
-                return [...leftAcc, a * b];
-            case OperatorType.DIVISION:
-                if (b === 0) {
-                    return [...acc, new Error("Division by zero")];
+                {
+                    const [a, b] = acc.slice(-2);
+                    const leftAcc = acc.slice(0, -2);
+                    return [...leftAcc, a + b];
                 }
-                return [...leftAcc, a / b];
+            case OperatorType.SUBTRACTION:
+                {
+                    const [a, b] = acc.slice(-2);
+                    const leftAcc = acc.slice(0, -2);
+                    return [...leftAcc, a - b];
+                }
+            case OperatorType.MULTIPLICATION:
+                {
+                    const [a, b] = acc.slice(-2);
+                    const leftAcc = acc.slice(0, -2);
+                    return [...leftAcc, a * b];
+                }
+            case OperatorType.DIVISION:
+                {
+                    const [a, b] = acc.slice(-2);
+                    const leftAcc = acc.slice(0, -2);
+                    if (b === 0) {
+                        return [...acc, new Error("Division by zero")];
+                    }
+                    return [...leftAcc, a / b];
+                }
 
             default:
                 return [...acc, new Error(`Unknown operator: ${token}`)];
