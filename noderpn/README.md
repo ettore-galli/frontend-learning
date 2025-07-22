@@ -32,7 +32,7 @@ Opzioni tsconfig
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": "./src",
@@ -88,6 +88,6 @@ npm test
 npx tsc
 
 # Esegue
-npx ts-node src/index.ts
+node dist/index.js
 
 ```
