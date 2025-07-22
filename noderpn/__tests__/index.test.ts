@@ -1,5 +1,5 @@
-import { somma } from '../src/index';
+import { main } from '../src/index';
 
-test('somma di 2 + 3 deve essere 5', () => {
-    expect(somma(2, 3)).toBe(5);
+test('Main runs', () => {
+    expect(main(["2", "3", "+"])).toBe(undefined);
 });
