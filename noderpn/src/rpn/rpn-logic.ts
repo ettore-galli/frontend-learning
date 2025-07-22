@@ -51,38 +51,38 @@ const identifyOperator = (operator: string): OperatorType => {
 
 const checkRPN = (tokens: string[]): boolean => tokens.every(token => isNumeric(token) || identifyOperator(token) !== null);
 
+
+
 const processRPNStep = (acc: any[], token: any): any[] => {
     if (isNumeric(token)) {
-        acc.push(token);
+        return [...acc, Number(token)];
     } else {
         if (acc.length < 2) {
-            throw new Error("Insufficient values in the stack for operation");
+            return [...acc, new Error("Insufficient values in the stack for operation")];
         }
-        // Pop the last two numbers from the stack
-        const b = acc.pop();
-        const a = acc.pop();
+
+        const [a, b] = acc.slice(-2);
+        const leftAcc = acc.slice(0, -2);
+
 
         switch (identifyOperator(String(token))) {
             case OperatorType.ADDITION:
-                acc.push(a + b);
-                break;
+                return [...leftAcc, a + b];
             case OperatorType.SUBTRACTION:
-                acc.push(a - b);
-                break;
+                return [...leftAcc, a - b];
             case OperatorType.MULTIPLICATION:
-                acc.push(a * b);
-                break;
+                return [...leftAcc, a * b];
             case OperatorType.DIVISION:
                 if (b === 0) {
-                    throw new Error("Division by zero");
+                    return [...acc, new Error("Division by zero")];
                 }
-                acc.push(a / b);
-                break;
+                return [...leftAcc, a / b];
+
             default:
-                throw new Error(`Unknown operator: ${token}`);
+                return [...acc, new Error(`Unknown operator: ${token}`)];
+
         }
     }
-    return acc;
 }
 
 const evaluateRPN = (tokens: string[]): RPNResult => {
@@ -91,4 +91,4 @@ const evaluateRPN = (tokens: string[]): RPNResult => {
         new RPNResult(false, tokens);
 }
 
-export { TokenType, OperatorType, Token, isNumeric, classifyToken, identifyOperator, RPNResult, checkRPN, evaluateRPN };
+export { TokenType, OperatorType, Token, isNumeric, classifyToken, identifyOperator, RPNResult, checkRPN, evaluateRPN, processRPNStep };
