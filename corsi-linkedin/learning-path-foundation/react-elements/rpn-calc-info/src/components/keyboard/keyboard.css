@@ -1,0 +1,23 @@
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* gap: 1rem; */
+}
+
+.key {
+    width: 100%;
+    margin: 0;
+    border-color: grey;
+}
+
+.key-span-1 {
+    grid-column: span 1;
+}
+
+.key-span-2 {
+    grid-column: span 2;
+}
+
+.key-span-3 {
+    grid-column: span 3;
+}
