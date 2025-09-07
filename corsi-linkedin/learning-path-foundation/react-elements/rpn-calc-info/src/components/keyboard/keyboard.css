@@ -1,13 +1,25 @@
 .keyboard {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     /* gap: 1rem; */
 }
 
-.key {
+.key,
+.key-placeholder {
+    box-sizing: border-box;
     width: 100%;
     margin: 0;
-    border-color: grey;
+    border: 1px solid grey;
+    border-radius: 8px;
+    padding: 0.6em 1.2em;
+}
+
+.key-placeholder {
+    @media (prefers-color-scheme: light) {
+        button {
+            background-color: #fafafa;
+        }
+    }
 }
 
 .key-span-1 {

@@ -18,22 +18,61 @@ class CalcButton {
     }
 }
 
+const PLUS_SIGN = "+";
+const MINUS_SIGN = "−"
+const MULT_SIGN = "×";
+const DIV_SIGN = "÷";
+
 const buttonDefinitions: CalcButton[] = [
-    new CalcButton(1, 1), new CalcButton(2, 1), new CalcButton(3, 1),
-    new CalcButton(4, 1), new CalcButton(5, 1), new CalcButton(6, 1),
-    new CalcButton(7, 1), new CalcButton(8, 1), new CalcButton(9, 1),
-    new CalcButton(0, 1), new CalcButton(CalculatorKeyFunctions.ENTER, 2),
+    new CalcButton(1, 1),
+    new CalcButton(2, 1),
+    new CalcButton(3, 1),
+    new CalcButton(CalculatorKeyFunctions.ADD, 1, PLUS_SIGN),
+    //
+    new CalcButton(4, 1),
+    new CalcButton(5, 1),
+    new CalcButton(6, 1),
+    new CalcButton(CalculatorKeyFunctions.SUBTRACT, 1, MINUS_SIGN),
+    //
+    new CalcButton(7, 1),
+    new CalcButton(8, 1),
+    new CalcButton(9, 1),
+    new CalcButton(CalculatorKeyFunctions.MULTIPLY, 1, MULT_SIGN),
+    //
+    new CalcButton(CalculatorKeyFunctions.EMPTY, 1),
+    new CalcButton(0, 1),
+    new CalcButton(CalculatorKeyFunctions.EMPTY, 1),
+    new CalcButton(CalculatorKeyFunctions.DIVIDE, 1, DIV_SIGN),
+    //
+    new CalcButton(CalculatorKeyFunctions.EMPTY, 1),
+    new CalcButton(CalculatorKeyFunctions.EMPTY, 1),
+    new CalcButton(CalculatorKeyFunctions.ENTER, 2),
+
+
 ]
 
-function renderButton(button: CalcButton) {
-    const buttonClass = `key key-span-${button.span}`;
+function renderButton(button: CalcButton, index: number) {
+
+    const key = `button-${index}`
 
     return (
-        <button className={buttonClass} key={button.value} value={button.value}>{button.label}</button>
+        button.value !== CalculatorKeyFunctions.EMPTY
+            ?
+            <button
+                className={`key key-span-${button.span}`}
+                key={key}
+                value={button.value}
+            >
+                {button.label}
+            </button>
+            :
+            <div
+                className={`key-placeholder key-span-${button.span}`}
+                key={key}
+            >
+            </div>
     );
 }
-
-
 
 function Keyboard() {
     return (

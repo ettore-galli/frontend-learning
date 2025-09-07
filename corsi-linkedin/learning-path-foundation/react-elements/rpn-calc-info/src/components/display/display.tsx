@@ -15,8 +15,8 @@ function Display(props: DisplayProps) {
     return (
         <div className="display">
             {props.lines.map(
-                (line) => {
-                    return <input className="line" readOnly={true} type="text" value={line}></input>;
+                (line, index) => {
+                    return <input className="line" key={`line-${index}`} readOnly={true} type="text" value={line}></input>;
                 }
             )}
         </div>
