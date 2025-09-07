@@ -1,0 +1,11 @@
+.display {
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+
+.line {
+    width: 100%;
+    margin: 0;
+    border-color: grey;
+}

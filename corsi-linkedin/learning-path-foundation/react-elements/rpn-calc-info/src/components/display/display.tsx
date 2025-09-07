@@ -1,10 +1,25 @@
+import "./display.css";
+
+const NOTHING = "-"
+class DisplayProps {
+
+    lines: (string | number)[]
+
+    constructor(lines: (string | number | null | undefined)[]) {
+        this.lines = lines.map(line => line || NOTHING);
+    }
+}
 
 
-function Display() {
+function Display(props: DisplayProps) {
     return (
-        <>
-            <input readOnly={true} type="text" placeholder="1234567890."></input>
-        </>
+        <div className="display">
+            {props.lines.map(
+                (line) => {
+                    return <input className="line" readOnly={true} type="text" value={line}></input>;
+                }
+            )}
+        </div>
     )
 }
 

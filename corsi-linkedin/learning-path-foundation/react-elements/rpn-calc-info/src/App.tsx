@@ -6,10 +6,10 @@ import Display from './components/display/display'
 function App() {
 
   return (
-    <>
-      <Display></Display>
+    <div>
+      <Display lines={[3.1415, 2.71, 9.81]}></Display>
       <Keyboard ></Keyboard>
-    </>
+    </div>
   )
 }
 
