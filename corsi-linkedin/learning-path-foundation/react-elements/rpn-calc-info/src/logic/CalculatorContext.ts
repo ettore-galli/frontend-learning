@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { CalculatorState, CalculatorAction } from './CalculatorReducer';
+import { CalculatorState, CalculatorAction } from './CalculatorReducer'; 
 
 
 export const CalcStateContext = createContext<typeof CalculatorState | null>(null);

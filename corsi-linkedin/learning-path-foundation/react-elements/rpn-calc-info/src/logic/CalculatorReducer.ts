@@ -44,9 +44,10 @@ const calculatorReducer = (state = CalculatorState, action: CalculatorAction): t
                     success: false
                 };
             }
+            const reversed = state.stack.slice(-2).reverse();
             return {
                 ...state,
-                stack: state.stack.slice(0, -1),
+                stack: [...state.stack.slice(0, -2), ...reversed],
             };
         case 'DROP':
             if (state.stack.length < 1) {

@@ -12,7 +12,7 @@ function App() {
     <CalcStateContext value={state}>
       <CalcDispatchContext value={dispatch}>
         <div>
-          <Display lines={state.stack.map(value => (typeof value !== "undefined") ? value : "")}></Display>
+          <Display></Display>
           <Keyboard ></Keyboard>
         </div>
       </CalcDispatchContext>

@@ -4,8 +4,12 @@
 
 }
 
-.line {
+.line, .error {
     width: 100%;
     margin: 0;
     border-color: grey;
+}
+
+.error {
+    color: darkred;
 }
