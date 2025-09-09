@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import "./display.css";
-import { CalcStateContext, CalcDispatchContext } from "../../logic/CalculatorContext";
+import { CalcStateContext } from "../../logic/CalculatorContext";
 
-const NOTHING = "-"
+
+// const NOTHING = "-"
 // class DisplayProps {
 
 //     lines: (string | number)[]
@@ -21,14 +22,19 @@ function Display() {
 
     return (
         <div className="display">
-            {lines.map(
-                (line, index) => {
-                    return <input className="line" key={`line-${index}`} readOnly={true} type="text" value={line}></input>;
-                }
-            )
-
-
+            {
+                lines.map(
+                    (line, index) => {
+                        return <input className="line" key={`line-${index}`} readOnly={true} type="text" value={line}></input>;
+                    }
+                )
             }
+
+            {
+                <input className="input" key={`input`} readOnly={true} type="text" value={state?.currentInput}></input>
+            }
+
+
             {
                 errorOccurred && <input className="error" key={`error`} readOnly={true} type="text" value={"ERROR"}></input>
             }

@@ -1,5 +1,6 @@
 
 const CalculatorKeyFunctions = {
+  TYPE: "TYPE",
   ENTER: "ENTER",
   ADD: "ADD",
   SUBTRACT: "SUBTRACT",
@@ -7,7 +8,8 @@ const CalculatorKeyFunctions = {
   DIVIDE: "DIVIDE",
   EMPTY: "EMPTY",
   SWAP: "SWAP",
-  DROP: "DROP"
+  DROP: "DROP",
+  POINT: "."
 } as const;
 
 type CalculatorKeyFunctionsType = typeof CalculatorKeyFunctions[keyof typeof CalculatorKeyFunctions];

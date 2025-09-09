@@ -2,12 +2,14 @@ import { useReducer } from 'react';
 
 const CalculatorState = {
     stack: [] as (string | number | undefined)[],
-    success: true
+    currentInput: "" as string,
+    success: true as boolean
 };
 
 const initialCalculatorState: typeof CalculatorState = {
     stack: [3.1415, 2.71828, 9.81],
-    success: true
+    currentInput: "" as string,
+    success: true as boolean
 };
 
 class CalculatorAction {
@@ -21,6 +23,31 @@ class CalculatorAction {
 
 const calculatorReducer = (state = CalculatorState, action: CalculatorAction): typeof CalculatorState => {
     switch (action.type) {
+        case 'TYPE':
+            return {
+                ...state,
+                currentInput: state.currentInput + (action.payload ? String(action.payload) : ""),
+            };
+        case 'ENTER':
+            if (state.currentInput === "") {
+                return {
+                    ...state,
+                    success: true
+                };
+            }
+            try {
+                const value: number = parseFloat(state.currentInput);
+                return {
+                    ...state,
+                    stack: [...state.stack, value],
+                    currentInput: ""
+                };
+            } catch (e) {
+                return {
+                    ...state,
+                    success: false,
+                };
+            }
         case 'PUSH':
             return {
                 ...state,
