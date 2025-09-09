@@ -62,7 +62,7 @@ function Keyboard() {
     const MULT_SIGN = "×";
     const DIV_SIGN = "÷";
 
-    const typeCharacter = (character: string) => {
+    const typeCharacter = (character: string): React.MouseEventHandler<HTMLButtonElement> => {
         const conClickFunction = () => {
             if (dispatch) {
                 dispatch(new CalculatorAction(CalculatorKeyFunctions.TYPE, character))
