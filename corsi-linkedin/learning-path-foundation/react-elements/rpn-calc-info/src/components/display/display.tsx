@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import "./display.css";
+import { CalcStateContext, CalcDispatchContext } from "../../logic/CalculatorContext";
 
 const NOTHING = "-"
 class DisplayProps {
@@ -12,6 +14,12 @@ class DisplayProps {
 
 
 function Display(props: DisplayProps) {
+    const state = useContext(CalcStateContext);
+    const dispatch = useContext(CalcDispatchContext);
+    
+    console.log(state)
+    console.log(dispatch)
+
     return (
         <div className="display">
             {props.lines.map(

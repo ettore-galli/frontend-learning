@@ -5,7 +5,9 @@ const CalculatorKeyFunctions = {
   SUBTRACT: "SUBTRACT",
   MULTIPLY: "MULTIPLY",
   DIVIDE: "DIVIDE",
-  EMPTY: "EMPTY"
+  EMPTY: "EMPTY",
+  SWAP: "SWAP",
+  DROP: "DROP"
 } as const;
 
 type CalculatorKeyFunctionsType = typeof CalculatorKeyFunctions[keyof typeof CalculatorKeyFunctions];
