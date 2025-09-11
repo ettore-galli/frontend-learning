@@ -7,9 +7,14 @@
 .line,
 .input,
 .error {
+    text-align: right;
+    font-family: monospace;
+    font-size: large;
     width: 100%;
     margin: 0;
     border-color: grey;
+    background-color:lightgray
+
 }
 
 .error {
@@ -18,4 +23,5 @@
 
 .input {
     color: rgb(47, 46, 46);
+    background-color:#ddd
 }

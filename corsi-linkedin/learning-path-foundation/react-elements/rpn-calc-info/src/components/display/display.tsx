@@ -25,18 +25,21 @@ function Display() {
             {
                 lines.map(
                     (line, index) => {
-                        return <input className="line" key={`line-${index}`} readOnly={true} type="text" value={line}></input>;
+                        // return <input className="line" key={`line-${index}`} readOnly={true} type="text" value={line}></input>;
+                        return <div className="line" key={`line-${index}`} >{line}</div>;
                     }
                 )
             }
 
             {
-                <input className="input" key={`input`} readOnly={true} type="text" value={state?.currentInput}></input>
+                // <input className="input" key={`input`} readOnly={true} type="text" value={state?.currentInput}></input>
+                <div className="input" key={"input"}>{state?.currentInput}</div>
             }
 
 
             {
-                errorOccurred && <input className="error" key={`error`} readOnly={true} type="text" value={"ERROR"}></input>
+                // errorOccurred && <input className="error" key={`error`} readOnly={true} type="text" value={"ERROR"}></input>
+                errorOccurred && <div className="error" key={"error"}>ERROR</div>
             }
 
         </div>
