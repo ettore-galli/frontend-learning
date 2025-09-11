@@ -72,28 +72,38 @@ function Keyboard() {
         return conClickFunction;
     }
 
+    const performOnStack = (action: string) => {
+        const conClickFunction = () => {
+            if (dispatch) {
+                dispatch(new CalculatorAction(action, undefined))
+            }
+        }
+
+        return conClickFunction;
+    }
+
 
 
     const buttonDefinitions: CalcButton[] = [
         new CalcButton(1, 1, typeCharacter("1")),
         new CalcButton(2, 1, typeCharacter("2")),
         new CalcButton(3, 1, typeCharacter("3")),
-        new CalcButton(CalculatorKeyFunctions.ADD, 1, () => { }, PLUS_SIGN),
+        new CalcButton(CalculatorKeyFunctions.ADD, 1, performOnStack(CalculatorKeyFunctions.ADD), PLUS_SIGN),
         //
         new CalcButton(4, 1, typeCharacter("4")),
         new CalcButton(5, 1, typeCharacter("5")),
         new CalcButton(6, 1, typeCharacter("6")),
-        new CalcButton(CalculatorKeyFunctions.SUBTRACT, 1, () => { }, MINUS_SIGN),
+        new CalcButton(CalculatorKeyFunctions.SUBTRACT, 1, performOnStack(CalculatorKeyFunctions.SUBTRACT), MINUS_SIGN),
         //
         new CalcButton(7, 1, typeCharacter("7")),
         new CalcButton(8, 1, typeCharacter("8")),
         new CalcButton(9, 1, typeCharacter("9")),
-        new CalcButton(CalculatorKeyFunctions.MULTIPLY, 1, () => { }, MULT_SIGN),
+        new CalcButton(CalculatorKeyFunctions.MULTIPLY, 1, performOnStack(CalculatorKeyFunctions.MULTIPLY), MULT_SIGN),
         //
         new CalcButton(CalculatorKeyFunctions.EMPTY, 1),
         new CalcButton(0, 1, typeCharacter("0")),
         new CalcButton(CalculatorKeyFunctions.POINT, 1, typeCharacter(CalculatorKeyFunctions.POINT)),
-        new CalcButton(CalculatorKeyFunctions.DIVIDE, 1, () => { }, DIV_SIGN),
+        new CalcButton(CalculatorKeyFunctions.DIVIDE, 1, performOnStack(CalculatorKeyFunctions.DIVIDE), DIV_SIGN),
         //
         new CalcButton(CalculatorKeyFunctions.SWAP, 1, (_) => {
             if (dispatch) {

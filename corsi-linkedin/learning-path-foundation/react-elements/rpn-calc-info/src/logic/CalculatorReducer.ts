@@ -21,72 +21,142 @@ class CalculatorAction {
     }
 }
 
+const applyDefaultsTostate = (state: typeof CalculatorState): typeof CalculatorState => {
+    return {
+        ...state, success: true
+    }
+}
+
+
+
 const calculatorReducer = (state = CalculatorState, action: CalculatorAction): typeof CalculatorState => {
     switch (action.type) {
         case 'TYPE':
             return {
-                ...state,
+                ...applyDefaultsTostate(state),
                 currentInput: state.currentInput + (action.payload ? String(action.payload) : ""),
             };
         case 'ENTER':
             if (state.currentInput === "") {
                 return {
-                    ...state,
-                    success: true
+                    ...applyDefaultsTostate(state),
                 };
             }
             try {
                 const value: number = parseFloat(state.currentInput);
                 return {
-                    ...state,
-                    stack: [...state.stack, value],
+                    ...applyDefaultsTostate(state),
+                    stack: [...applyDefaultsTostate(state).stack, value],
                     currentInput: ""
                 };
             } catch (e) {
                 return {
-                    ...state,
+                    ...applyDefaultsTostate(state),
                     success: false,
                 };
             }
         case 'PUSH':
             return {
-                ...state,
-                stack: [...state.stack, action.payload],
+                ...applyDefaultsTostate(state),
+                stack: [...applyDefaultsTostate(state).stack, action.payload],
             };
         case 'POP':
             if (state.stack.length === 0) {
                 return {
-                    ...state,
+                    ...applyDefaultsTostate(state),
                     success: false
                 };
             }
             return {
-                ...state,
+                ...applyDefaultsTostate(state),
+
                 stack: state.stack.slice(0, -1),
             };
         case 'SWAP':
             if (state.stack.length < 2) {
                 return {
-                    ...state,
+                    ...applyDefaultsTostate(state),
                     success: false
                 };
             }
             const reversed = state.stack.slice(-2).reverse();
             return {
-                ...state,
-                stack: [...state.stack.slice(0, -2), ...reversed],
+                ...applyDefaultsTostate(state),
+                stack: [...applyDefaultsTostate(state).stack.slice(0, -2), ...reversed],
             };
         case 'DROP':
             if (state.stack.length < 1) {
                 return {
-                    ...state,
+                    ...applyDefaultsTostate(state),
                     success: false
                 };
             }
             return {
-                ...state,
+                ...applyDefaultsTostate(state),
                 stack: state.stack.slice(0, -1),
             };
+        case 'ADD':
+            {
+                if (state.stack.length < 2) {
+                    return {
+                        ...applyDefaultsTostate(state),
+                        success: false
+                    };
+                }
+                const [b, a] = state.stack.slice(-2) as number[];
+                return {
+                    ...applyDefaultsTostate(state),
+                    stack: state.stack.slice(0, -2).concat([a + b]),
+                };
+            }
+        case 'SUBTRACT':
+            {
+                if (state.stack.length < 2) {
+                    return {
+                        ...applyDefaultsTostate(state),
+                        success: false
+                    };
+                }
+                const [b, a] = state.stack.slice(-2) as number[];
+                return {
+                    ...applyDefaultsTostate(state),
+                    stack: state.stack.slice(0, -2).concat([b - a]),
+                };
+            }
+        case 'MULTIPLY':
+            {
+                if (state.stack.length < 2) {
+                    return {
+                        ...applyDefaultsTostate(state),
+                        success: false
+                    };
+                }
+                const [b, a] = state.stack.slice(-2) as number[];
+                return {
+                    ...applyDefaultsTostate(state),
+                    stack: state.stack.slice(0, -2).concat([a * b]),
+                };
+            }
+        case 'DIVIDE':
+            {
+                if (state.stack.length < 2) {
+                    return {
+                        ...applyDefaultsTostate(state),
+                        success: false
+                    };
+                }
+                const [b, a] = state.stack.slice(-2) as number[];
+                if (a === 0) {
+                    return {
+                        ...applyDefaultsTostate(state),
+                        success: false
+                    };
+                }
+                return {
+                    ...applyDefaultsTostate(state),
+                    stack: state.stack.slice(0, -2).concat([b / a]),
+                };
+            }
         default:
             return state;
     }
