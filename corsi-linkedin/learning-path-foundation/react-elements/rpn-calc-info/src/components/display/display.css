@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr;
 
+
 }
 
 .line,
@@ -13,8 +14,7 @@
     width: 100%;
     margin: 0;
     border-color: grey;
-    background-color:lightgray
-
+    background-color: lightgray
 }
 
 .error {
@@ -23,5 +23,21 @@
 
 .input {
     color: rgb(47, 46, 46);
-    background-color:#ddd
+    background-color: #ddd
+}
+
+.stack-top,
+.stack-mid,
+.stack-bottom {
+    border: 1px solid grey;
+}
+
+.stack-top {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.stack-bottom {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
