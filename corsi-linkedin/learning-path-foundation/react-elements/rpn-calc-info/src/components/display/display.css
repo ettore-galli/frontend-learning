@@ -1,13 +1,12 @@
 .display {
     display: grid;
     grid-template-columns: 1fr;
-
-
 }
 
 .line,
 .input,
 .error {
+    box-sizing: border-box;
     text-align: right;
     font-family: monospace;
     font-size: large;
