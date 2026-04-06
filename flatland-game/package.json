@@ -9,6 +9,7 @@
     "test": "vitest",
     "dev": "ts-node src/index.ts",
     "build": "tsc",
+    "build:prod": "./build-prod.sh",
     "test:watch": "vitest --watch"
   },
   "keywords": [],
