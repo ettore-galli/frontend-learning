@@ -4,23 +4,36 @@
 
 ```shell
 npm init -y
-
 npm install --save-dev typescript ts-node
-
 npx tsc --init
 ```
 
 Modifiche tsconfig.json
 
 ```json
+{
+  "compilerOptions": {
     "outDir": "./dist",
-    "module": "esnext",
+    "module": "node16",
     "target": "ES2020",
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    ...
-    "types": ["vitest"]
+    "types": ["vitest"],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  }
+}
 ```
 
 Modifiche package.json
@@ -29,15 +42,15 @@ Modifiche package.json
   "type": "module",
 ```
 
-## Linting
+## Linting via ESLint
 
-```shell
+```sh
 npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```  
 
-eslint.config.js
+File `eslint.config.js`:
 
-```json
+```js
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 
@@ -47,40 +60,31 @@ export default [
     languageOptions: {
       parser: tsParser,
       ecmaVersion: "latest",
-      sourceType: "module",
+      sourceType: "module"
     },
     plugins: {
-      "@typescript-eslint": tseslint,
+      "@typescript-eslint": tseslint
     },
     rules: {
       ...tseslint.configs.recommended.rules,
       "@typescript-eslint/no-unused-vars": "warn",
-      "no-console": "off",
-    },
-  },
+      "no-console": "off"
+    }
+  }
 ];
-
-
 ```
 
-Aggiungere a package.json
+---
 
-```json
-"scripts": {
-  "lint": "eslint . --ext .ts",
-  "lint:fix": "eslint . --ext .ts --fix"
-}
-```
-
-## Testing
+## Testing (vitest)
 
 ```shell
 npm install --save-dev vitest
 ```
 
-vitest.config.ts
+File `vitest.config.ts`:
 
-```typescript
+```ts
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -89,6 +93,21 @@ export default defineConfig({
     include: ["tests/**/*.test.ts"],
     globals: true
   }
+});
+```
+
+Esempio test:
+
+```ts
+export const sum = (a: number, b: number) => a + b;
+```
+
+```ts
+import { test, expect } from "vitest";
+import { sum } from "../src/index.js";
+
+test("sum works", () => {
+  expect(sum(1, 2)).toBe(3);
 });
 ```
 
