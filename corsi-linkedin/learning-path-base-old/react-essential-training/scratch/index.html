@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React ⚛️</title>
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        const heading = React.createElement("h1", null, "Getting Started with React");
+        const ul = React.createElement("ul", { style: { color: "green" } },
+            React.createElement("li", { style: { color: "red" } }, "lalla"),
+            React.createElement("li", { style: { color: "red" } }, "lelle"),
+            React.createElement("li", { style: { color: "red" } }, "lilli")
+        );
+        const cicci = "cicci"
+        const lalla = "lalla"
+        const container = React.createElement("div", null, heading, ul);
+        const page = <div>
+            <h1>La mia pagina!</h1>
+            <li>
+                <ul>{cicci}</ul>
+                <ul>{lalla}</ul>
+            </li>
+        </div>;
+        ReactDOM.render(
+            page, root
+        );
+    </script>
+</body>
+
+</html>
