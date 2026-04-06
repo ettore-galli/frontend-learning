@@ -6,3 +6,5 @@ corso-testing/ExerciseFiles/sandbox
 corso-testing/ExerciseFiles/solutions
 node_modules
 coverage/
+
+.DS_Store
