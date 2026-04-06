@@ -154,7 +154,7 @@ test("sum works", () => {
 
 ## Build deploy
 
-File: build-prod.sh
+File: build-package.sh
 
 ```sh
 rm -rf build 
@@ -165,11 +165,17 @@ cp -r dist/* build
 
 ```
 
+```sh
+npm install --save-dev serve
+```
+
 File: package.json
 
 ```json
 {
-  "build:prod": "./build-prod.sh",
+  "build:prod": "./build-package.sh",
+  "preview": "./build-package.sh && serve build"
   ...
 }
+
 ```
