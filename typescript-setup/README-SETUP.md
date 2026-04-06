@@ -151,3 +151,25 @@ test("sum works", () => {
     "build": "tsc",
   },
 ```
+
+## Build deploy
+
+File: build-prod.sh
+
+```sh
+rm -rf build 
+npm run build 
+mkdir build 
+cp -r public/* build  
+cp -r dist/* build
+
+```
+
+File: package.json
+
+```json
+{
+  "build:prod": "./build-prod.sh",
+  ...
+}
+```

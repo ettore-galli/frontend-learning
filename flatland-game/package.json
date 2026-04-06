@@ -9,7 +9,8 @@
     "test": "vitest",
     "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "build:prod": "./build-prod.sh",
+    "build:prod": "./build-package.sh",
+    "preview": "./build-package.sh && serve build",
     "test:watch": "vitest --watch"
   },
   "keywords": [],
@@ -20,6 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^8.58.0",
     "@typescript-eslint/parser": "^8.58.0",
     "eslint": "^10.2.0",
+    "serve": "^14.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2",
     "vitest": "^4.1.2"
