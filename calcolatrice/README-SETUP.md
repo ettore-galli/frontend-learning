@@ -1,4 +1,10 @@
-# SETUP
+# VEDI SETUP GENERALE
+
+typescript-setup/README-SETUP.md
+
+**_NON AGGIORNARE QUESTO FILE_**
+
+**_OBSOLETO_**
 
 ## Base
 
@@ -46,31 +52,31 @@ Modifiche package.json
 
 ```sh
 npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
-```  
+```
 
 File `eslint.config.js`:
 
 ```js
-import tseslint from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 
 export default [
   {
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
     languageOptions: {
       parser: tsParser,
-      ecmaVersion: "latest",
-      sourceType: "module"
+      ecmaVersion: 'latest',
+      sourceType: 'module',
     },
     plugins: {
-      "@typescript-eslint": tseslint
+      '@typescript-eslint': tseslint,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
-      "@typescript-eslint/no-unused-vars": "warn",
-      "no-console": "off"
-    }
-  }
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-console': 'off',
+    },
+  },
 ];
 ```
 
@@ -85,14 +91,14 @@ npm install --save-dev vitest
 File `vitest.config.ts`:
 
 ```ts
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    environment: "node",
-    include: ["tests/**/*.test.ts"],
-    globals: true
-  }
+    environment: 'node',
+    include: ['tests/**/*.test.ts'],
+    globals: true,
+  },
 });
 ```
 
@@ -103,10 +109,10 @@ export const sum = (a: number, b: number) => a + b;
 ```
 
 ```ts
-import { test, expect } from "vitest";
-import { sum } from "../src/index.js";
+import { test, expect } from 'vitest';
+import { sum } from '../src/index.js';
 
-test("sum works", () => {
+test('sum works', () => {
   expect(sum(1, 2)).toBe(3);
 });
 ```

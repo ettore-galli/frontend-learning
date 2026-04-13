@@ -11,9 +11,7 @@
     "moduleResolution": "node16",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "types": [
-      "vitest"
-    ],
+    "types": ["vitest"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -26,25 +24,22 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     // Style Options
-    // "noImplicitReturns": true,
+    "noImplicitReturns": true, // strict
     // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true, // strict
+    "noUnusedParameters": true, // strict
+    "noFallthroughCasesInSwitch": true, // strict
     // "noPropertyAccessFromIndexSignature": true,
     // Recommended Options
-    "strict": true,
+    "strict": true, // strict
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    "noImplicitAny": true // strict
   },
-  "include": [
-    "src",
-  ],
-  "exclude": [
-    "tests"
-  ]
+  "include": ["src"],
+  "exclude": ["tests"]
 }

@@ -1,35 +1,36 @@
 class CustomNumber extends HTMLElement {
-    static get observedAttributes() { return ["number-value"] };
-    shadow: ShadowRoot;
-    
-    constructor() {
-        super();
-        this.shadow = this.attachShadow({ mode: "open" });
-    }
+  static get observedAttributes() {
+    return ['number-value'];
+  }
+  shadow: ShadowRoot;
 
-    set numberValue(actualValue: Number) {
-        this.setAttribute("number-value", String(actualValue));
-    }
+  constructor() {
+    super();
+    this.shadow = this.attachShadow({ mode: 'open' });
+  }
 
-    get numberValue() {
-        return Number(this.getAttribute("number-value"))
-    }
+  set numberValue(actualValue: number) {
+    this.setAttribute('number-value', String(actualValue));
+  }
 
-    render(numberValue: Number) {
+  get numberValue() {
+    return Number(this.getAttribute('number-value'));
+  }
 
-        const rendered: string = `*${numberValue}*`;
-        const componentHTML = `<span id="number">${rendered}</span>`
+  render(numberValue: number) {
+    const rendered: string = `*${numberValue}*`;
+    const componentHTML = `<span id="number">${rendered}</span>`;
 
-        this.shadow.innerHTML = componentHTML
-    }
+    this.shadow.innerHTML = componentHTML;
+  }
 
-    attributeChangedCallback(_name: string, _oldVal: string, newVal: string) {
-        this.render(Number(newVal));
-    }
+  attributeChangedCallback(_name: string, _oldVal: string, newVal: string) {
+    this.render(Number(newVal));
+  }
 
-    connectedCallback() {
-        this.render(this.numberValue);
-    }
+  connectedCallback() {
+    this.render(this.numberValue);
+  }
 }
 
-customElements.define("custom-number", CustomNumber);
+customElements.define('custom-number', CustomNumber);

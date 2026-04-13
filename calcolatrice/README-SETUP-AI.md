@@ -102,26 +102,26 @@ npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslin
 File `eslint.config.js`:
 
 ```js
-import tseslint from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 
 export default [
   {
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
     languageOptions: {
       parser: tsParser,
-      ecmaVersion: "latest",
-      sourceType: "module"
+      ecmaVersion: 'latest',
+      sourceType: 'module',
     },
     plugins: {
-      "@typescript-eslint": tseslint
+      '@typescript-eslint': tseslint,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
-      "@typescript-eslint/no-unused-vars": "warn",
-      "no-console": "off"
-    }
-  }
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-console': 'off',
+    },
+  },
 ];
 ```
 
@@ -138,24 +138,24 @@ npm install --save-dev vitest
 File `vitest.config.ts`:
 
 ```ts
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    environment: "node",
-    include: ["tests/**/*.test.ts"],
-    globals: true
-  }
+    environment: 'node',
+    include: ['tests/**/*.test.ts'],
+    globals: true,
+  },
 });
 ```
 
 Esempio test:
 
 ```ts
-import { test, expect } from "vitest";
-import { sum } from "../src/index.js";
+import { test, expect } from 'vitest';
+import { sum } from '../src/index.js';
 
-test("sum works", () => {
+test('sum works', () => {
   expect(sum(1, 2)).toBe(3);
 });
 ```
@@ -168,22 +168,26 @@ Gli import devono usare **.js** anche se il file sorgente è `.ts`.
 # ▶️ 6. Esecuzione
 
 ### Avvio in sviluppo
+
 ```sh
 npm run dev
 ```
 
 ### Linting
+
 ```sh
 npm run lint
 npm run lint:fix
 ```
 
 ### Test
+
 ```sh
 npm test
 ```
 
 ### Build
+
 ```sh
 npm run build
 ```
@@ -194,17 +198,17 @@ npm run build
 
 Hai ora un ambiente:
 
-- moderno  
-- coerente  
-- ESM-first  
-- con linting rigoroso  
-- test affidabili  
-- pronto per evolvere verso React/Vite o un motore di gioco più complesso  
+- moderno
+- coerente
+- ESM-first
+- con linting rigoroso
+- test affidabili
+- pronto per evolvere verso React/Vite o un motore di gioco più complesso
 
 Se vuoi, posso aggiungere anche:
 
-- un **devcontainer** VS Code  
-- una struttura modulare per il tuo gioco (loop, ECS, input, rendering)  
-- un template per passare a **Vite + React** quando vorrai  
+- un **devcontainer** VS Code
+- una struttura modulare per il tuo gioco (loop, ECS, input, rendering)
+- un template per passare a **Vite + React** quando vorrai
 
 Dimmi tu come vuoi proseguire.Ì
