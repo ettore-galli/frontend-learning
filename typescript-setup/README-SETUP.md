@@ -39,20 +39,21 @@ Modifiche tsconfig.json
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     // Style Options
-    // "noImplicitReturns": true,
+    "noImplicitReturns": true, // strict
     // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true, // strict
+    "noUnusedParameters": true, // strict
+    "noFallthroughCasesInSwitch": true, // strict
     // "noPropertyAccessFromIndexSignature": true,
     // Recommended Options
-    "strict": true,
+    "strict": true, // strict
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    "noImplicitAny": true, // strict
   },
   "include": [
     "src",
@@ -153,6 +154,36 @@ test("sum works", () => {
     "dev": "ts-node src/index.ts",
     "build": "tsc",
   },
+```
+
+## Prettier
+
+```shell
+npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+```
+
+.prettierrc
+
+```json
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "arrowParens": "always"
+}
+```˙
+
+package.json
+
+```json
+{
+  "format": "prettier --write .",
+  "format:check": "prettier --check .",
+  "lint": "eslint . --ext .ts",
+  "lint:fix": "eslint . --ext .ts --fix"
+}
 ```
 
 ## Build deploy
