@@ -107,6 +107,8 @@ export default [
 
 ```shell
 npm install --save-dev vitest
+npm install --save-dev jsdom
+npm audit fix # jsdom vulnerabilities
 ```
 
 File `vitest.config.ts`:
@@ -116,7 +118,8 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    environment: "node",
+    // environment: "node",
+    environment: "jsdom",
     include: ["tests/**/*.test.ts"],
     globals: true
   }

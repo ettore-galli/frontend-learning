@@ -24,14 +24,15 @@ class BaseInputField extends HTMLElement {
         );
     }
 
-    get value(): string | undefined {
+    get rawValue(): string | undefined {
         return this._input?.value;
     }
 
-    set value(val: string) {
+    set rawValue(val: string) {
         if (this._input) {
             this._input.value = val;
         }
+        this.render(this.root, val);
     }
 }
 
