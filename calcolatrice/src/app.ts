@@ -2,7 +2,7 @@ import './components/simpleLabel/SimpleLabel.js';
 import './components/customNumber/CustomNumber.js';
 import './components/inputField/numberInputField.js';
 
-export function renderApp(root: HTMLElement) {
+export function renderApp(root: HTMLElement): void {
   const label = document.createElement('simple-label');
   label.setAttribute('label-text', 'H3ll0, w0r1|>');
   label.setAttribute('label-level', '1');
@@ -27,7 +27,7 @@ export function renderApp(root: HTMLElement) {
 
     root?.appendChild(inp1);
 
-    btn.onclick = () => {
+    btn.onclick = (): void => {
       console.log('inp1.htmlValue', inp1.numberValue);
       numb.setAttribute('number-value', String(inp1.numberValue) || '?');
       inp1.numberValue = 0;

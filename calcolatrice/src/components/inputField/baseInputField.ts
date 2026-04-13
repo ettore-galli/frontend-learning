@@ -7,16 +7,16 @@ class BaseInputField extends HTMLElement {
     this.root = this.attachShadow({ mode: 'closed' });
   }
 
-  render(root: ShadowRoot, value: string) {
+  render(root: ShadowRoot, value: string): void {
     root.innerHTML = `<input value="${value}"></input>`;
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     this.render(this.root, this.getAttribute('value') || '');
     this._input = this.root?.querySelector('input');
   }
 
-  attributeChangedCallback(name: string, oldVal: string, newVal: string) {
+  attributeChangedCallback(name: string, _oldVal: string, newVal: string): void {
     console.log('changed', name, newVal);
     this.render(this.root, newVal);
   }

@@ -1,5 +1,5 @@
 class SimpleLabel extends HTMLElement {
-  static get observedAttributes() {
+  static get observedAttributes(): string[] {
     return ['label-text', 'label-level'];
   }
 
@@ -8,7 +8,7 @@ class SimpleLabel extends HTMLElement {
     // this.attachShadow({ mode: "open" });
   }
 
-  render() {
+  render(): void {
     const labelText: string = this.getAttribute('label-text') || '<empty>';
     const labelLevel: string | null = this.getAttribute('label-level');
     const labelTag = labelLevel ? 'h' + labelLevel : 'p';
@@ -18,14 +18,14 @@ class SimpleLabel extends HTMLElement {
     this.innerHTML = componentHTML;
   }
 
-  attributeChangedCallback(_name: string, _oldVal: string, newVal: string) {
+  attributeChangedCallback(_name: string, _oldVal: string, newVal: string): void {
     const textSpan = this.querySelector('span');
     if (textSpan) {
       textSpan.textContent = newVal;
     }
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     this.render();
   }
 }

@@ -1,7 +1,7 @@
 import { BaseInputField } from './baseInputField.js';
 
 class NumberInputField extends BaseInputField {
-  attributeChangedCallback(name: string, _oldVal: string, newVal: string) {
+  attributeChangedCallback(name: string, _oldVal: string, newVal: string): void {
     console.log('changed', name, newVal);
     this.render(this.root, newVal);
   }
